@@ -49,7 +49,7 @@ export default function AnalyticsShowcase() {
           </h2>
 
           {/* Descriptions */}
-          <div className="w-full max-w-[576px] xl:w-[920px] flex flex-col gap-[12px] font-[Helvetica] font-normal text-[12px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
+          <div className="w-full max-w-[576px] xl:w-[920px] flex flex-col gap-[12px] font-[Helvetica] font-normal text-[16px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
             <p>
               Unitoppers is built for the scale and compliance needs of government schools and educational bodies, aligned with India's digital governance initiatives.
             </p>
@@ -71,7 +71,7 @@ export default function AnalyticsShowcase() {
                 />
               </div>
               <div className="flex-1 min-w-0 flex items-center">
-                <p className="font-[Helvetica] font-bold text-[12px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
+                <p className="font-[Helvetica] font-bold text-[16px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
                   Standardized reporting across all institutions no more chasing data from individual schools
                 </p>
               </div>

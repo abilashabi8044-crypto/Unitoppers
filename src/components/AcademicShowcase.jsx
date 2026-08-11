@@ -63,7 +63,7 @@ export default function AcademicShowcase() {
           </h2>
 
           {/* Description Paragraphs */}
-          <div className="font-[Helvetica] flex flex-col gap-[12px] font-normal text-[12px] sm:text-[14px] md:text-[16px] text-[#2B3279] leading-relaxed max-w-[672px] lg:max-w-[576px]">
+          <div className="font-[Helvetica] flex flex-col gap-[12px] font-normal text-[16px] sm:text-[14px] md:text-[16px] text-[#2B3279] leading-relaxed max-w-[672px] lg:max-w-[576px]">
             <p>The exam software you've been patching together can't do this.</p>
             <p>
               Unitoppers brings your entire examination workflow, from question creation to results, under one roof, with AI doing the heavy lifting on integrity and insights.
@@ -88,7 +88,7 @@ export default function AcademicShowcase() {
                   <h4 className="font-[Helvetica] font-bold text-[14px] sm:text-[16px] text-[#2B3279] leading-snug">
                     {item.title}
                   </h4>
-                  <p className="font-[Helvetica] font-normal text-[12px] sm:text-[14px] text-[#2B3279] leading-relaxed mt-[4px]">
+                  <p className="font-[Helvetica] font-normal text-[14px] sm:text-[14px] text-[#2B3279] leading-relaxed mt-[4px]">
                     {item.description}
                   </p>
                 </div>

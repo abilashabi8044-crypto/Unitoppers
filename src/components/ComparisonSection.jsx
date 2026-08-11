@@ -171,9 +171,9 @@ export default function ComparisonSection() {
 
                       {/* Text */}
                       <div className="text-slate-600">
-                        <span className="font-normal font-[Helvetica]">{pt.text}</span>
-                        <span className="font-semibold text-[12px] text-slate-900 font-[Helvetica]">{pt.highlight}</span>
-                        <span className="font-semibold text-[12px] text-[#1a3481] font-[Helvetica]">{pt.highlight1}</span>
+                        <span className="font-normal text-[14px] font-[Helvetica]">{pt.text}</span>
+                        <span className="font-semibold text-[14px] text-slate-900 font-[Helvetica]">{pt.highlight}</span>
+                        <span className="font-semibold text-[14px] text-[#1a3481] font-[Helvetica]">{pt.highlight1}</span>
                       </div>
                     </div>
                   ))}
