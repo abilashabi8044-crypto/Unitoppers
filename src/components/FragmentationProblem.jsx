@@ -91,7 +91,7 @@ export default function FragmentationProblem() {
 
         {/* Header Section */}
         <div className="flex flex-col items-center text-center gap-[16px] max-w-[768px]">
-          <h2 className="font-[Helvetica] text-[20px] font-bold sm:text-[20px] lg:text-[24px] text-[#2B3279] tracking-tight leading-relaxed">
+          <h2 className="font-[Helvetica] text-[20px] font-bold sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight leading-relaxed">
             Your institution doesn't have a software problem.{' '}
             <span className="text-[#FF7A00]">It has a fragmentation problem.</span>
           </h2>

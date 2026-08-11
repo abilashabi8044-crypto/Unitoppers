@@ -58,7 +58,7 @@ export default function AcademicShowcase() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[20px] md:text-[20px] lg:text-[20px] xl:text-[24px] text-[#2B3279] tracking-tight leading-tight">
+          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[20px] md:text-[24px] lg:text-[24px] xl:text-[24px] text-[#2B3279] tracking-tight leading-tight">
             Examinations <span className="text-[#FF7A00]">Reimagined</span> with AI
           </h2>
 

@@ -73,7 +73,7 @@ export default function FeaturesSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-bold text-[20px] sm:text-[20px] lg:text-[24px] leading-tight text-[#2B3279] gap-[16px] tracking-tight px-[4px] sm:px-[0px]">
+          <h2 className="font-bold text-[20px] sm:text-[24px] lg:text-[24px] leading-tight text-[#2B3279] gap-[16px] tracking-tight px-[4px] sm:px-[0px]">
             Everything your institution runs in <span className="text-[#FF7A00]">one place.</span>
           </h2>
 

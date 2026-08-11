@@ -92,7 +92,7 @@ export default function DemoSection() {
         <div className="flex flex-col items-start gap-[16px] w-full lg:w-[52%] text-left shrink-0">
 
           {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[20px] lg:text-[24px] text-[#2B3279] tracking-tight leading-tight">
+          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight leading-tight">
             Shut down the chaos. Run on <span className="text-[#FF7A00]">one platform.</span>
           </h2>
 

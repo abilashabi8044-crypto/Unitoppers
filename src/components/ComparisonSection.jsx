@@ -100,7 +100,7 @@ export default function ComparisonSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-[Helvetica] font-semibold text-[20px] sm:text-[20px] lg:text-[24px] gap-[16px] text-[#2B3279] tracking-tight">
+          <h2 className="font-[Helvetica] font-semibold text-[20px] sm:text-[24px] lg:text-[24px] gap-[16px] text-[#2B3279] tracking-tight">
             Not just for the admin office. For <span className="text-[#FF7A00]">everyone</span> who runs the institution.
           </h2>
 

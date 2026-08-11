@@ -81,7 +81,7 @@ export default function TrustSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[20px] lg:text-[24px] text-[#2B3279] tracking-tight">
+          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight">
             Who we <span className="text-[#FF7A00]">work </span>with
           </h2>
 

@@ -53,7 +53,7 @@ export default function HowItWorks() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-[helvetica] font-semibold text-[24px] sm:text-[24px] lg:text-[24px] xl:text-[24px] text-[#2B3279] tracking-tight leading-tight">
+          <h2 className="font-[helvetica] font-semibold text-[20px] sm:text-[24px] lg:text-[24px] xl:text-[24px] text-[#2B3279] tracking-tight leading-tight">
             You don't add Unitoppers. You <span className="text-[#FF7A00]">replace everything else.</span>
           </h2>
 
