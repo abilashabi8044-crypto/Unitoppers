@@ -13,25 +13,25 @@ const features = [
     icon: proctoringIcon,
     title: 'AI Proctoring',
     description: 'Camera and microphone monitoring keeps online exams honest, without manual supervision.',
-    bgColor: '#FFF0E6',
+    bgColor: '#E8EAFF',
   },
   {
     icon: brainIcon,
     title: 'Adaptive Assessments',
     description: "Tests that adjust to each student's level. Practice modes designed for NEET and JEE formats.",
-    bgColor: '#FFF0E6',
+    bgColor: '#E8EAFF',
   },
   {
     icon: docIcon,
     title: 'Question Bank Management',
     description: 'Build once, reuse across terms. Tag questions by chapter, difficulty, and learning objective.',
-    bgColor: '#FFF0E6',
+    bgColor: '#E8EAFF',
   },
   {
     icon: analyticsIcon,
     title: 'Instant Analytics',
     description: 'After every test, see learning gaps by student, class, subject, and chapter automatically.',
-    bgColor: '#FFF0E6',
+    bgColor: '#E8EAFF',
   },
 ];
 
