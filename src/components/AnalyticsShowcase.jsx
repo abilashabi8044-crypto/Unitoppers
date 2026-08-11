@@ -44,7 +44,7 @@ export default function AnalyticsShowcase() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[24px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight leading-tight">
+          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight leading-tight">
             One dashboard replacing six departmental <span className="text-[#FF7A00]">reports.</span>
           </h2>
 
