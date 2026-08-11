@@ -114,13 +114,13 @@ export default function ComparisonSection() {
         {/* 5 Stakeholder Cards (Touch Slider on Mobile & Tablet up to 1024px+, Grid on Desktop) */}
         <div className="w-full mt-[8px] overflow-x-auto pb-[16px] pt-[4px] snap-x snap-mandatory scroll-smooth scrollbar-none">
           <div
-            className="flex gap-[16px] sm:gap-[24px] xl:gap-[32px] w-max min-w-full items-stretch px-[16px] xl:px-[32px]"
+            className="inline-flex gap-[16px] sm:gap-[24px] xl:gap-[32px] min-w-full items-stretch px-[16px] xl:px-[32px]"
             style={{ justifyContent: 'safe center' }}
           >
             {stakeholders.map((item, index) => (
               <div
                 key={index}
-                className="snap-center shrink-0 w-[78vw] sm:w-[320px] md:w-[340px] xl:w-[288px] h-full flex flex-col items-center p-[16px] bg-white rounded-[24px] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.13)] xl:hover:shadow-xl transition-all duration-300 xl:hover:-translate-y-1 group"
+                className="snap-center shrink-0 w-[78vw] sm:w-[320px] md:w-[340px] xl:w-[288px] self-stretch flex flex-col items-center p-[16px] bg-white rounded-[24px] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.13)] xl:hover:shadow-xl transition-all duration-300 xl:hover:-translate-y-1 group"
               >
                 {/* Top Round Icon Container */}
                 <div
