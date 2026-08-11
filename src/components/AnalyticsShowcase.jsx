@@ -71,7 +71,7 @@ export default function AnalyticsShowcase() {
                 />
               </div>
               <div className="flex-1 min-w-0 flex items-center">
-                <p className="font-[Helvetica] font-bold text-[16px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
+                <p className="font-[Helvetica] font-bold text-[12px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
                   Standardized reporting across all institutions no more chasing data from individual schools
                 </p>
               </div>
