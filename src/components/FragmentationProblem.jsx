@@ -123,7 +123,7 @@ export default function FragmentationProblem() {
                 </div>
 
                 {/* Label */}
-                <span className="font-[Helvetica] font-sm text-[12px] sm:text-[14px] text-[#2B3279]">
+                <span className="font-[Helvetica] font-sm text-[16px] sm:text-[14px] text-[#2B3279]">
                   {item.label}
                 </span>
               </div>
