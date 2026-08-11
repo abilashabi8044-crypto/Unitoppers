@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 28px 28px;
+    background-image:
+      radial-gradient(circle, rgba(148, 163, 184, 0.2) 1.5px, transparent 1.5px);
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-reverse {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes flow-line {
+  0% {
+    stroke-dashoffset: 40;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-float-1 {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-reverse 6s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-slow 7s ease-in-out infinite 1s;
+}
+
+.animate-flow {
+  stroke-dasharray: 6, 6;
+  animation: flow-line 2s linear infinite;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+  overflow-x: hidden;
+}
