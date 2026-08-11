@@ -73,7 +73,7 @@ export default function AcademicShowcase() {
           {/* 4 Feature Points Stack */}
           <div className="flex flex-col gap-[10px] w-full mt-[4px]">
             {features.map((item, idx) => (
-              <div key={idx} className="w-full max-w-[672px] lg:max-w-131 flex items-start gap-[10px] p-[16px] bg-white/80 backdrop-blur-xs rounded-[24px] border border-slate-200/80 shadow-2xs hover:shadow-md transition-all opacity-100">
+              <div key={idx} className="w-full max-w-[672px] lg:max-w-131 flex items-start gap-[10px] p-[16px] ">
                 <div
                   className="w-[48px] h-[48px] bg-slate-200 rounded-[9999px] flex items-center justify-center shrink-0 shadow-2xs mt-[2px]"
                   style={{ backgroundColor: item.bgColor }}
