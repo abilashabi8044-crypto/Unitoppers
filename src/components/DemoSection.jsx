@@ -86,7 +86,7 @@ export default function DemoSection() {
     <section id="demo-form" className="relative w-full mt-[0px] pt-[24px] pb-[24px] sm:pt-[48px] sm:pb-[48px] px-[16px] sm:px-[48px] bg-white overflow-hidden font-['Helvetica',sans-serif]">
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-8xl mx-auto flex flex-col lg:flex-row items-start justify-between gap-[24px] lg:gap-[32px]">
+      <div className="relative z-10 max-w-8xl mx-auto flex flex-col lg:flex-row items-stretch justify-between gap-[24px] lg:gap-[32px]">
 
         {/* LEFT COLUMN: Title, Description & stats.png Image Showcase */}
         <div className="flex flex-col items-start gap-[16px] w-full lg:w-[52%] text-left shrink-0">
@@ -115,13 +115,13 @@ export default function DemoSection() {
         {/* RIGHT COLUMN: Lead Form Card */}
         <div className="w-full lg:w-[48%] flex justify-center">
 
-          <div className="w-full max-w-[672px] mt-[20px] bg-white rounded-[24px] p-[24px] sm:p-[32px] border border-slate-300 shadow-xl text-left">
+          <div className="w-full max-w-[672px] mt-[20px] lg:mt-0 h-full bg-white rounded-[24px] p-[24px] sm:p-[32px] lg:p-[24px] lg:py-[20px] border border-slate-300 shadow-xl text-left flex flex-col justify-center">
 
             {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-[16px]">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-[16px] lg:gap-[12px]">
 
                 {/* Field 1: Your Name */}
-                <div className="flex flex-col gap-[6px]">
+                <div className="flex flex-col gap-[6px] lg:gap-[4px]">
                   <label className="font-[Helvetica] text-[14px] font-bold text-[#2B3279]">Your Name</label>
                   <div className="relative">
                     <img
@@ -136,14 +136,14 @@ export default function DemoSection() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Your name"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] bg-slate-50 border ${errors.name ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
+                      className={`w-full pl-[40px] pr-[16px] py-[10px] lg:py-[8px] bg-slate-50 border ${errors.name ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
                     />
                   </div>
                   {errors.name && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.name}</span>}
                 </div>
 
                 {/* Field 2: Institution Name */}
-                <div className="flex flex-col gap-[6px]">
+                <div className="flex flex-col gap-[6px] lg:gap-[4px]">
                   <label className="font-[Helvetica] text-[14px] font-bold text-[#2B3279]">Institution Name</label>
                   <div className="relative">
                     <img
@@ -158,14 +158,14 @@ export default function DemoSection() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Enter your institution name"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] bg-slate-50 border ${errors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
+                      className={`w-full pl-[40px] pr-[16px] py-[10px] lg:py-[8px] bg-slate-50 border ${errors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
                     />
                   </div>
                   {errors.institution && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.institution}</span>}
                 </div>
 
                 {/* Field 3: City */}
-                <div className="flex flex-col gap-[6px]">
+                <div className="flex flex-col gap-[6px] lg:gap-[4px]">
                   <label className="font-[Helvetica] text-[14px] font-bold text-[#2B3279]">City</label>
                   <div className="relative">
                     <img
@@ -180,14 +180,14 @@ export default function DemoSection() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Enter your city"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] bg-slate-50 border ${errors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
+                      className={`w-full pl-[40px] pr-[16px] py-[10px] lg:py-[8px] bg-slate-50 border ${errors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
                     />
                   </div>
                   {errors.city && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.city}</span>}
                 </div>
 
                 {/* Field 4: Phone Number */}
-                <div className="flex flex-col gap-[6px]">
+                <div className="flex flex-col gap-[6px] lg:gap-[4px]">
                   <label className="font-[Helvetica] text-[14px] font-bold text-[#2B3279]">Phone Number</label>
                   <div className="relative">
                     <img
@@ -202,14 +202,14 @@ export default function DemoSection() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Enter your phone number"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] bg-slate-50 border ${errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
+                      className={`w-full pl-[40px] pr-[16px] py-[10px] lg:py-[8px] bg-slate-50 border ${errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
                     />
                   </div>
                   {errors.phone && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.phone}</span>}
                 </div>
 
                 {/* Field 5: Email Address */}
-                <div className="flex flex-col gap-[6px]">
+                <div className="flex flex-col gap-[6px] lg:gap-[4px]">
                   <label className="font-[Helvetica] text-[14px] font-bold text-[#2B3279]">Email Address</label>
                   <div className="relative">
                     <img
@@ -224,7 +224,7 @@ export default function DemoSection() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Enter your email address"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] bg-slate-50 border ${errors.email ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
+                      className={`w-full pl-[40px] pr-[16px] py-[10px] lg:py-[8px] bg-slate-50 border ${errors.email ? 'border-red-500 bg-red-50/50' : 'border-slate-200'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
                     />
                   </div>
                   {errors.email && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.email}</span>}
@@ -233,13 +233,13 @@ export default function DemoSection() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-[14px] mt-[8px] bg-linear-to-r font-[Helvetica]  from-[#FF7A00] to-[#F6881F] hover:from-[#e56d00] hover:to-[#df7914] text-white font-bold text-[14px] sm:text-[16px] rounded-[9999px] shadow-lg shadow-orange-500/25 transition-all hover:scale-[1.01] cursor-pointer"
+                  className="w-full py-[14px] lg:py-[10px] mt-[8px] lg:mt-[4px] bg-linear-to-r font-[Helvetica]  from-[#FF7A00] to-[#F6881F] hover:from-[#e56d00] hover:to-[#df7914] text-white font-bold text-[14px] sm:text-[16px] rounded-[9999px] shadow-lg shadow-orange-500/25 transition-all hover:scale-[1.01] cursor-pointer"
                 >
                   Book a Free demo
                 </button>
 
                 {/* Divider Line with OR badge */}
-                <div className="relative my-[16px] flex items-center justify-center">
+                <div className="relative my-[16px] lg:my-[12px] flex items-center justify-center">
                   <div className="absolute inset-[0px] flex items-center">
                     <div className="w-full border-t gap-[8px] border-slate-400" />
                   </div>
@@ -249,7 +249,7 @@ export default function DemoSection() {
                 </div>
 
                 {/* Booklet Download & Guarantee Notes */}
-                <div className="flex flex-col gap-[12px] text-[12px]">
+                <div className="flex flex-col gap-[12px] lg:gap-[8px] text-[12px]">
 
                   {/* Download item */}
                   <div className="flex items-start gap-[10px]">
