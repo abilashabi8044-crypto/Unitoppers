@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { triggerDemoScroll } from '../store/slices/uiSlice';
 import footerLogo from '../assets/footer-icons/footer-logo.png';
-import linkedin from '../assets/footer-icons/mdi_linkedin.png';
-import twitter from '../assets/footer-icons/vector.png';
 import { User, Mail, Link as LinkIcon, FileText, Send, ShieldCheck, ChevronRight } from 'lucide-react';
 
 export default function Footer() {
