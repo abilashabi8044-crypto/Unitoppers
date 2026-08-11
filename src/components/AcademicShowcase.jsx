@@ -75,13 +75,13 @@ export default function AcademicShowcase() {
             {features.map((item, idx) => (
               <div key={idx} className="w-full max-w-[672px] lg:max-w-131 flex items-start gap-[10px] p-[16px] ">
                 <div
-                  className="w-[48px] h-[48px] bg-slate-200 rounded-[9999px] flex items-center justify-center shrink-0 shadow-2xs mt-[2px]"
+                  className="w-[60px] h-[60px] bg-slate-200 rounded-[9999px] flex items-center justify-center shrink-0 shadow-2xs mt-[2px]"
                   style={{ backgroundColor: item.bgColor }}
                 >
                   <img
                     src={item.icon}
                     alt={item.title}
-                    className="w-[24px] h-[24px] object-contain pointer-events-none select-none"
+                    className="w-[35px] h-[35px] object-contain pointer-events-none select-none"
                   />
                 </div>
                 <div className="flex flex-col text-left">
