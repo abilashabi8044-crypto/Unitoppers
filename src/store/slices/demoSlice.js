@@ -4,9 +4,11 @@ const initialState = {
   formData: {
     name: '',
     institution: '',
-    cityState: '',
+    city: '',
     phone: '',
     email: '',
+    sessionTime: 'Morning (10:00 AM - 1:00 PM)',
+    bookingDate: '',
   },
   submitted: false,
 };
@@ -26,9 +28,11 @@ const demoSlice = createSlice({
       state.formData = {
         name: '',
         institution: '',
-        cityState: '',
+        city: '',
         phone: '',
         email: '',
+        sessionTime: 'Morning (10:00 AM - 1:00 PM)',
+        bookingDate: '',
       };
       state.submitted = false;
     },

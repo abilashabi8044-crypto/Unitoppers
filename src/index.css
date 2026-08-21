@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 

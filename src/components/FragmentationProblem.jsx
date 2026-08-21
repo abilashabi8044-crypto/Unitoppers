@@ -196,9 +196,9 @@ export default function FragmentationProblem() {
               </div>
 
               {/* Overlapping Floating Circle Badge on Right Edge */}
-              <div className="absolute -right-[8px] sm:-right-[16px] xl:-right-[32px] top-1/2 -translate-y-1/2 w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] xl:w-[72px] xl:h-[72px] rounded-[9999px] bg-white border border-slate-100 shadow-xl flex items-center justify-center p-[8px] z-20 transition-transform hover:scale-105">
+              {/* <div className="absolute -right-[8px] sm:-right-[16px] xl:-right-[32px] top-1/2 -translate-y-1/2 w-[56px] h-[56px] sm:w-[64px] sm:h-[64px] xl:w-[72px] xl:h-[72px] rounded-[9999px] bg-white border border-slate-100 shadow-xl flex items-center justify-center p-[8px] z-20 transition-transform hover:scale-105">
                 <img src={mainLogo} alt="Unitoppers" className="ml-[4px] w-[40px] h-[32px] sm:w-[48px] sm:h-[40px] object-contain pointer-events-none select-none" />
-              </div>
+              </div> */}
 
             </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { triggerDemoScroll } from '../store/slices/uiSlice';
+import { triggerDemoScroll, setCurrentPage } from '../store/slices/uiSlice';
 import mainLogo from '../assets/main-icon/Layer_1.png';
 import { LogIn, ArrowRight } from 'lucide-react';
 
@@ -8,7 +8,11 @@ export default function Header() {
   const dispatch = useDispatch();
 
   const handleDemoClick = () => {
-    dispatch(triggerDemoScroll());
+    dispatch(setCurrentPage('home'));
+    window.location.hash = '';
+    setTimeout(() => {
+      dispatch(triggerDemoScroll());
+    }, 50);
   };
 
   const scrollToTop = () => {
@@ -19,11 +23,17 @@ export default function Header() {
     }
   };
 
+  const handleLogoClick = () => {
+    dispatch(setCurrentPage('home'));
+    window.location.hash = '';
+    scrollToTop();
+  };
+
   return (
     <header className="bg-[#FFFFFF] xl:bg-transparent sticky top-[0px] left-[0px] right-[0px] w-full max-w-[1280px] mx-auto px-[16px] sm:px-[24px] lg:px-[32px] pt-[12px] sm:pt-[16px] pb-[8px] z-50 transition-all">
       <div className="bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-sm rounded-[9999px] px-[10px] sm:px-[24px] py-[8px] sm:py-[14px] flex flex-nowrap items-center justify-between gap-[6px] sm:gap-[12px] transition-all hover:shadow-md">
         {/* Logo */}
-        <div onClick={scrollToTop} className="flex items-center gap-[6px] sm:gap-[10px] cursor-pointer shrink-0">
+        <div onClick={handleLogoClick} className="flex items-center gap-[6px] sm:gap-[10px] cursor-pointer shrink-0">
           <img
             src={mainLogo}
             alt="Unitoppers"

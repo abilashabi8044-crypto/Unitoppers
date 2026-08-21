@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from './store/slices/uiSlice';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import SoundFamiliar from './components/SoundFamiliar';
@@ -12,10 +14,77 @@ import HowItWorks from './components/HowItWorks';
 import DemoSection from './components/DemoSection';
 import Footer from './components/Footer';
 import SmoothScroll from './components/SmoothScroll';
+import Contactus from './Pages/Contactus';
+import Privacypolicy from './Pages/Privacypolicy';
+import TermsAndConditions from './Pages/Terms&conditions';
 import heroDesktopImg from './assets/hero-bg.png';
-import heroTabletImg from './assets/hero/herobg- mobile .png';
 
 export default function App() {
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.ui.currentPage);
+
+  // Sync with window.location.hash for browser navigation and direct links
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#contact' || hash === '#contact-us' || hash === '#contactus') {
+        dispatch(setCurrentPage('contact'));
+      } else if (hash === '#privacy' || hash === '#privacy-policy' || hash === '#privacypolicy') {
+        dispatch(setCurrentPage('privacy'));
+      } else if (hash === '#terms' || hash === '#terms-and-conditions' || hash === '#terms&conditions' || hash === '#terms-of-use') {
+        dispatch(setCurrentPage('terms'));
+      } else {
+        dispatch(setCurrentPage('home'));
+      }
+    };
+
+    // Initial check
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [dispatch]);
+
+  // Scroll to top whenever currentPage changes
+  useEffect(() => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [currentPage]);
+
+  // Render Contact Us Page
+  if (currentPage === 'contact') {
+    return (
+      <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
+        <SmoothScroll />
+        <Contactus />
+      </div>
+    );
+  }
+
+  // Render Privacy Policy Page
+  if (currentPage === 'privacy') {
+    return (
+      <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
+        <SmoothScroll />
+        <Privacypolicy />
+      </div>
+    );
+  }
+
+  // Render Terms and Conditions Page
+  if (currentPage === 'terms') {
+    return (
+      <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
+        <SmoothScroll />
+        <TermsAndConditions />
+      </div>
+    );
+  }
+
+  // Render Home Landing Page
   return (
     <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
       <SmoothScroll />
@@ -77,4 +146,3 @@ export default function App() {
     </div>
   );
 }
-

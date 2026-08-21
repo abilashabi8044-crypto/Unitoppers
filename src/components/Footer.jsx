@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { triggerDemoScroll } from '../store/slices/uiSlice';
+import { setCurrentPage } from '../store/slices/uiSlice';
 import footerLogo from '../assets/footer-icons/footer-logo.png';
 import { User, Mail, Link as LinkIcon, FileText, Send, ShieldCheck, ChevronRight } from 'lucide-react';
+import DemoModal from './DemoModal';
 
 export default function Footer() {
   const dispatch = useDispatch();
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-
-  const handleDemoClick = () => {
-    dispatch(triggerDemoScroll());
-  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +34,12 @@ export default function Footer() {
     }
   };
 
+  const handleLogoClick = () => {
+    dispatch(setCurrentPage('home'));
+    window.location.hash = '';
+    scrollToTop();
+  };
+
   return (
     <footer className="relative w-full bg-white font-['Helvetica',sans-serif] text-left border-t border-slate-100 overflow-hidden">
 
@@ -51,7 +55,7 @@ export default function Footer() {
           <div className="relative z-10 md:col-span-2 md:row-span-2 lg:col-span-4 lg:row-span-1 flex flex-col items-start md:border-r border-slate-200/60 pr-[0px] md:pr-[32px] shrink-0">
             {/* Logo */}
             <button
-              onClick={scrollToTop}
+              onClick={handleLogoClick}
               className="flex items-center cursor-pointer text-left focus:outline-none group mb-[16px]"
               aria-label="Unitoppers Home"
             >
@@ -87,14 +91,32 @@ export default function Footer() {
             </div>
             <h4 className="font-[Helvetica] font-bold text-[16px] text-[#1C1E46] mb-[12px] lg:text-left">Quick Links</h4>
             <ul className="font-[Helvetica] flex flex-col gap-[12px]">
-              {['Book a Demo', 'Contact Us'].map((text) => (
-                <li key={text}>
-                  <button onClick={handleDemoClick} className="flex items-center gap-[12px] text-[14px] text-slate-500 hover:text-blue-600 transition-colors group cursor-pointer">
-                    <ChevronRight className="w-[14px] h-[14px] text-blue-600 group-hover:translate-x-1 transition-transform" />
-                    {text}
-                  </button>
-                </li>
-              ))}
+              <li>
+                <button
+                  onClick={() => setIsDemoModalOpen(true)}
+                  className="flex items-center gap-[12px] text-[14px] text-slate-500 hover:text-blue-600 transition-colors group cursor-pointer"
+                >
+                  <ChevronRight className="w-[14px] h-[14px] text-blue-600 group-hover:translate-x-1 transition-transform" />
+                  Book a Demo
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    dispatch(setCurrentPage('contact'));
+                    window.location.hash = '#contact';
+                    if (window.lenis) {
+                      window.lenis.scrollTo(0, { immediate: true });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'instant' });
+                    }
+                  }}
+                  className="flex items-center gap-[12px] text-[14px] text-slate-500 hover:text-blue-600 transition-colors group cursor-pointer"
+                >
+                  <ChevronRight className="w-[14px] h-[14px] text-blue-600 group-hover:translate-x-1 transition-transform" />
+                  Contact Us
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -105,14 +127,40 @@ export default function Footer() {
             </div>
             <h4 className="font-[Helvetica] font-bold text-[16px] text-[#1C1E46] mb-[12px] lg:text-left">Resources</h4>
             <ul className="font-[Helvetica] flex flex-col gap-[12px]">
-              {['Privacy Policy', 'Terms of Use'].map((text) => (
-                <li key={text}>
-                  <button onClick={handleDemoClick} className="flex items-center gap-[12px] text-[14px] text-slate-500 hover:text-[#FF7A00] transition-colors group cursor-pointer">
-                    <ChevronRight className="w-[14px] h-[14px] text-[#FF7A00] group-hover:translate-x-1 transition-transform" />
-                    {text}
-                  </button>
-                </li>
-              ))}
+              <li>
+                <button
+                  onClick={() => {
+                    dispatch(setCurrentPage('privacy'));
+                    window.location.hash = '#privacy';
+                    if (window.lenis) {
+                      window.lenis.scrollTo(0, { immediate: true });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'instant' });
+                    }
+                  }}
+                  className="flex items-center gap-[12px] text-[14px] text-slate-500 hover:text-[#FF7A00] transition-colors group cursor-pointer"
+                >
+                  <ChevronRight className="w-[14px] h-[14px] text-[#FF7A00] group-hover:translate-x-1 transition-transform" />
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    dispatch(setCurrentPage('terms'));
+                    window.location.hash = '#terms';
+                    if (window.lenis) {
+                      window.lenis.scrollTo(0, { immediate: true });
+                    } else {
+                      window.scrollTo({ top: 0, behavior: 'instant' });
+                    }
+                  }}
+                  className="flex items-center gap-[12px] text-[14px] text-slate-500 hover:text-[#FF7A00] transition-colors group cursor-pointer"
+                >
+                  <ChevronRight className="w-[14px] h-[14px] text-[#FF7A00] group-hover:translate-x-1 transition-transform" />
+                  Terms of Use
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -190,6 +238,12 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Book a Demo Modal Dialog */}
+      <DemoModal
+        isOpen={isDemoModalOpen}
+        onClose={() => setIsDemoModalOpen(false)}
+      />
     </footer>
   );
 }
