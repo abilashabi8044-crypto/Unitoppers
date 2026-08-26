@@ -69,7 +69,7 @@ const toolCards = [
 
 export default function SoundFamiliar() {
   return (
-    <section className="relative w-full h-auto mt-[0px] pt-[24px] pb-[24px] sm:pt-[48px] sm:pb-[48px] px-[16px] sm:px-[48px] bg-[#F8F8FF] overflow-hidden font-['Helvetica',sans-serif]">
+    <section className="relative w-full h-auto mt-[0px] pt-[24px] pb-[24px] sm:pt-[48px] sm:pb-[40px] px-[16px] sm:px-[48px] bg-[#F8F8FF] overflow-hidden font-['Helvetica',sans-serif]">
       {/* Container */}
       <div className="flex flex-col items-center gap-[16px] sm:gap-[24px] lg:gap-[32px] max-w-[1280px] mx-auto w-full">
 

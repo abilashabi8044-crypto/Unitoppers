@@ -179,10 +179,10 @@ export default function Hero() {
         onClose={() => setIsDemoModalOpen(false)}
       />
 
-      {/* 2. VIDEO POPUP MODAL - MOBILE SCREEN SIZE */}
+      {/* 2. VIDEO POPUP MODAL - MODERN SLEEK CINEMATIC PLAYER */}
       {isVideoOpen && typeof document !== 'undefined' && createPortal(
         <div
-          className={`fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md ${
+          className={`fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md ${
             isVideoClosing ? 'modal-backdrop-exit' : 'modal-backdrop-enter'
           }`}
           onClick={closeVideoModal}
@@ -190,165 +190,163 @@ export default function Hero() {
           aria-modal="true"
           aria-label="Product Demo Video"
         >
-          {/* Mobile Phone Mockup Container */}
+          {/* Modal Container with Ambient Glow */}
           <div
-            className={`relative w-full max-w-[330px] min-[400px]:max-w-[360px] sm:max-w-[380px] h-[82vh] max-h-[720px] min-h-[520px] bg-[#0c1021] border-[5px] sm:border-[6px] border-slate-700/80 rounded-[38px] sm:rounded-[44px] shadow-[0_0_60px_rgba(0,0,0,0.9),0_20px_40px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col p-2.5 sm:p-3 ${
+            className={`relative w-full max-w-[420px] md:max-w-[440px] h-[82vh] max-h-[720px] min-h-[500px] bg-[#0c1021] border border-white/15 rounded-[24px] sm:rounded-[28px] shadow-[0_25px_60px_rgba(0,0,0,0.7),0_0_50px_rgba(255,122,0,0.15)] overflow-hidden flex flex-col ${
               isVideoClosing ? 'modal-card-exit' : 'modal-card-enter'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Outside Desktop Close Button */}
-            <button
-              onClick={closeVideoModal}
-              className="hidden sm:flex absolute -top-11 right-0 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white items-center justify-center backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg"
-              aria-label="Close modal"
-            >
-              <X className="w-4 h-4" />
-            </button>
+            {/* Ambient Background Glow Behind Player */}
+            <div className="absolute -inset-4 bg-linear-to-tr from-[#FF7A00]/20 via-indigo-500/10 to-[#2B3279]/30 rounded-[32px] blur-2xl pointer-events-none -z-10" />
 
-            {/* Inner Mobile Screen Frame */}
-            <div className="relative w-full h-full bg-black rounded-[28px] sm:rounded-[34px] overflow-hidden flex flex-col justify-between group">
-              {/* Dynamic Island Notch */}
-              <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-30 w-24 sm:w-28 h-4 bg-black/90 backdrop-blur-md rounded-full flex items-center justify-between px-3 border border-white/10 shadow-sm pointer-events-none">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#FF7A00] animate-pulse" />
-                <div className="w-2 h-2 rounded-full bg-slate-800 border border-slate-700" />
+            {/* Top Modern Header Bar */}
+            <div className="relative z-30 px-4 py-3 bg-[#0c1021]/90 backdrop-blur-md border-b border-white/10 flex items-center justify-between">
+              {/* Brand Title with Pulse Indicator */}
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#FF7A00] animate-pulse" />
+                <span className="text-[13px] font-bold text-white tracking-wide">
+                  Unitoppers <span className="text-[#FF7A00] font-medium text-[12px]">• Product Tour</span>
+                </span>
               </div>
 
-              {/* Top Action Overlay (Skip button & Tag) */}
-              <div className="absolute top-0 left-0 right-0 z-30 pt-9 pb-4 px-3.5 flex items-center justify-between bg-linear-to-b from-black/80 via-black/40 to-transparent pointer-events-auto">
-                <span className="text-[11px] sm:text-[12px] font-medium text-white/90 tracking-wide drop-shadow-md">
-                  Unitoppers Demo
-                </span>
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    closeVideoModal();
+                    setIsDemoModalOpen(true);
+                  }}
+                  className="hidden sm:inline-flex items-center gap-1 px-3 py-1 bg-[#FF7A00] hover:bg-orange-600 text-white rounded-full text-[11px] font-semibold transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <span>Book Demo</span>
+                </button>
 
-                {/* SKIP BUTTON */}
                 <button
                   onClick={closeVideoModal}
-                  className="px-3 py-1 bg-white/20 hover:bg-[#FF7A00] text-white rounded-full text-[11px] sm:text-[12px] font-semibold flex items-center gap-1 backdrop-blur-md border border-white/25 transition-all shadow-md hover:scale-105 cursor-pointer active:scale-95"
-                  title="Skip video and continue"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-all cursor-pointer hover:rotate-90"
+                  aria-label="Close video modal"
+                  title="Close (Esc)"
                 >
-                  <span>Skip</span>
-                  <X className="w-3.5 h-3.5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
+            </div>
 
-              {/* Video Element */}
-              <div
-                className="relative w-full h-full flex items-center justify-center bg-black cursor-pointer"
-                onClick={togglePlay}
+            {/* Main Video Viewport */}
+            <div
+              className="relative flex-1 w-full bg-black overflow-hidden flex items-center justify-center cursor-pointer group"
+              onClick={togglePlay}
+            >
+              <video
+                ref={videoRef}
+                src={demoVideo}
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain bg-black select-none pointer-events-none"
+                onTimeUpdate={() => {
+                  if (videoRef.current) setCurrentTime(videoRef.current.currentTime);
+                }}
+                onLoadedMetadata={() => {
+                  if (videoRef.current) setDuration(videoRef.current.duration);
+                }}
+                onEnded={() => setIsPlaying(false)}
               >
-                <video
-                  ref={videoRef}
-                  src={demoVideo}
-                  autoPlay
-                  playsInline
-                  className="w-full h-full object-cover sm:object-contain"
-                  onTimeUpdate={() => {
-                    if (videoRef.current) setCurrentTime(videoRef.current.currentTime);
-                  }}
-                  onLoadedMetadata={() => {
-                    if (videoRef.current) setDuration(videoRef.current.duration);
-                  }}
-                  onEnded={() => setIsPlaying(false)}
-                >
-                  Your browser does not support the video tag.
-                </video>
+                Your browser does not support the video tag.
+              </video>
 
-                {/* Play / Pause Overlay Icon when paused */}
-                {!isPlaying && (
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-xs transition-all pointer-events-none">
-                    <div className="w-14 h-14 rounded-full bg-[#FF7A00]/90 text-white flex items-center justify-center shadow-xl shadow-orange-500/30">
-                      <Play className="w-7 h-7 ml-1 fill-white" />
-                    </div>
+              {/* Play / Pause Centered Overlay when paused */}
+              {!isPlaying && (
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-xs transition-all pointer-events-none">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FF7A00] text-white flex items-center justify-center shadow-xl shadow-orange-500/40 transform transition-transform group-hover:scale-110">
+                    <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-white" />
                   </div>
-                )}
+                </div>
+              )}
+            </div>
+
+            {/* Bottom Glassmorphic Player Controls */}
+            <div
+              className="relative z-30 px-4 py-3 bg-[#0c1021]/95 backdrop-blur-md border-t border-white/10 flex flex-col gap-2.5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Timeline Scrubber */}
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono text-white/80 shrink-0 select-none">
+                  {formatTime(currentTime)}
+                </span>
+                <input
+                  type="range"
+                  min="0"
+                  max={duration || 100}
+                  step="0.1"
+                  value={currentTime}
+                  onChange={handleSeek}
+                  className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#FF7A00] hover:h-1.5 transition-all"
+                />
+                <span className="text-[11px] font-mono text-white/60 shrink-0 select-none">
+                  {formatTime(duration)}
+                </span>
               </div>
 
-              {/* Bottom Custom Mobile Video Controls */}
-              <div
-                className="absolute bottom-0 left-0 right-0 z-30 pt-8 pb-3 px-3.5 bg-linear-to-t from-black/90 via-black/60 to-transparent flex flex-col gap-2 pointer-events-auto"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Timeline Scrubber */}
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-white/80 shrink-0">
-                    {formatTime(currentTime)}
-                  </span>
-                  <input
-                    type="range"
-                    min="0"
-                    max={duration || 100}
-                    step="0.1"
-                    value={currentTime}
-                    onChange={handleSeek}
-                    className="w-full h-1 bg-white/30 rounded-lg appearance-none cursor-pointer accent-[#FF7A00] hover:h-1.5 transition-all"
-                  />
-                  <span className="text-[10px] font-mono text-white/60 shrink-0">
-                    {formatTime(duration)}
-                  </span>
-                </div>
-
-                {/* Controls Bar */}
-                <div className="flex items-center justify-between gap-1 pt-1">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    {/* Rewind 10s */}
-                    <button
-                      onClick={(e) => skipSeconds(-10, e)}
-                      className="p-1.5 sm:p-2 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
-                      title="Rewind 10 seconds"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    </button>
-
-                    {/* Play / Pause */}
-                    <button
-                      onClick={togglePlay}
-                      className="p-1.5 sm:p-2 rounded-full bg-[#FF7A00] hover:bg-orange-600 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-md"
-                      title={isPlaying ? 'Pause' : 'Play'}
-                    >
-                      {isPlaying ? (
-                        <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white" />
-                      ) : (
-                        <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white ml-0.5" />
-                      )}
-                    </button>
-
-                    {/* Fast Forward 10s */}
-                    <button
-                      onClick={(e) => skipSeconds(10, e)}
-                      className="p-1.5 sm:p-2 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
-                      title="Skip forward 10 seconds"
-                    >
-                      <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    </button>
-
-                    {/* Mute / Unmute */}
-                    <button
-                      onClick={toggleMute}
-                      className="p-1.5 sm:p-2 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
-                      title={isMuted ? 'Unmute' : 'Mute'}
-                    >
-                      {isMuted ? (
-                        <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      ) : (
-                        <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      )}
-                    </button>
-                  </div>
-
-                  {/* Open Demo Modal Button */}
+              {/* Controls Bar */}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {/* Rewind 10s */}
                   <button
-                    onClick={() => {
-                      closeVideoModal();
-                      setIsDemoModalOpen(true);
-                    }}
-                    className="px-2.5 py-1 bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-[10px] sm:text-[11px] rounded-full transition-all shadow-md hover:scale-105 active:scale-95 whitespace-nowrap cursor-pointer"
+                    onClick={(e) => skipSeconds(-10, e)}
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                    title="Rewind 10 seconds"
                   >
-                    Book Demo
+                    <RotateCcw className="w-4 h-4" />
+                  </button>
+
+                  {/* Play / Pause */}
+                  <button
+                    onClick={togglePlay}
+                    className="p-2 rounded-full bg-[#FF7A00] hover:bg-orange-600 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-md shadow-orange-500/30"
+                    title={isPlaying ? 'Pause' : 'Play'}
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-4 h-4 fill-white" />
+                    ) : (
+                      <Play className="w-4 h-4 fill-white ml-0.5" />
+                    )}
+                  </button>
+
+                  {/* Fast Forward 10s */}
+                  <button
+                    onClick={(e) => skipSeconds(10, e)}
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                    title="Skip forward 10 seconds"
+                  >
+                    <RotateCw className="w-4 h-4" />
+                  </button>
+
+                  {/* Mute / Unmute */}
+                  <button
+                    onClick={toggleMute}
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                    title={isMuted ? 'Unmute' : 'Mute'}
+                  >
+                    {isMuted ? (
+                      <VolumeX className="w-4 h-4" />
+                    ) : (
+                      <Volume2 className="w-4 h-4" />
+                    )}
                   </button>
                 </div>
 
-                {/* Home Indicator Bar */}
-                <div className="w-24 h-1 bg-white/40 rounded-full mx-auto mt-1" />
+                {/* Quick CTA inside controls */}
+                <button
+                  onClick={() => {
+                    closeVideoModal();
+                    setIsDemoModalOpen(true);
+                  }}
+                  className="sm:hidden px-3 py-1.5 bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-[11px] rounded-full transition-all shadow-md active:scale-95 whitespace-nowrap cursor-pointer"
+                >
+                  Book Demo
+                </button>
               </div>
             </div>
           </div>

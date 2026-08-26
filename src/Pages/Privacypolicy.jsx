@@ -67,7 +67,7 @@ export default function Privacypolicy() {
       <div className="absolute top-2/3 left-[-80px] w-[450px] h-[450px] bg-orange-200/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* HERO / HEADER SECTION (FULL WIDTH) */}
-      <section className="relative w-full pt-[36px] sm:pt-[48px] pb-[20px] px-[16px] sm:px-[32px] lg:px-[48px] max-w-7xl mx-auto text-left">
+      <section className="relative w-8xl pt-[36px] sm:pt-[48px] pb-[20px] px-[16px] sm:px-[32px] lg:px-[48px] max-w-7xl mx-auto text-left">
         
         {/* Breadcrumb Back Button */}
         <button
