@@ -67,7 +67,7 @@ export default function TrustSection() {
       <div className="max-w-8xl mx-auto flex flex-col items-start gap-[16px] sm:gap-[24px] text-left relative z-10">
         
         {/* Header Section (Left Aligned) */}
-        <div className="flex flex-col items-start text-left gap-[12px]">
+        <div className="flex flex-col items-start text-left gap-[18px]">
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-[8px] px-[16px] py-[4px] rounded-[9999px] bg-white border border-[#FF7A00]/50 shadow-2xs">
             <img
@@ -80,15 +80,18 @@ export default function TrustSection() {
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight">
-            Who we <span className="text-[#FF7A00]">work </span>with
-          </h2>
+          {/* Heading & Subtitle Wrapper */}
+          <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full">
+            {/* Heading */}
+            <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight">
+              Who we <span className="text-[#FF7A00]">work </span>with
+            </h2>
 
-          {/* Subtitle */}
-          <p className="font-[Helvetica] font-medium text-[12px] sm:text-[14px] text-[#2B3279]">
-            Explore the latest trends in educational management software.
-          </p>
+            {/* Subtitle */}
+            <p className="font-[Helvetica] font-medium text-[12px] sm:text-[16px] text-[#2B3279]">
+              Explore the latest trends in educational management software.
+            </p>
+          </div>
         </div>
 
         {/* Endless Infinite Right-to-Left Slider Track */}

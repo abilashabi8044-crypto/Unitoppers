@@ -74,7 +74,7 @@ export default function SoundFamiliar() {
       <div className="flex flex-col items-center gap-[16px] sm:gap-[24px] lg:gap-[32px] max-w-[1280px] mx-auto w-full">
 
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-[12px] sm:gap-[16px] max-w-[768px] px-[4px]">
+        <div className="flex flex-col items-center text-center gap-[16px] sm:gap-[16px] max-w-[768px] px-[4px]">
           <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] text-[#0B133F] tracking-tight">
             Sound familiar?
           </h2>

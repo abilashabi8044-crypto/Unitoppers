@@ -57,17 +57,20 @@ export default function AcademicShowcase() {
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[20px] md:text-[24px] lg:text-[24px] xl:text-[24px] text-[#2B3279] tracking-tight leading-tight">
-            Examinations <span className="text-[#FF7A00]">Reimagined</span> with AI
-          </h2>
+          {/* Heading & Descriptions Wrapper */}
+          <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full">
+            {/* Heading */}
+            <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[20px] md:text-[24px] lg:text-[24px] xl:text-[24px] text-[#2B3279] tracking-tight leading-tight">
+              Examinations <span className="text-[#FF7A00]">Reimagined</span> with AI
+            </h2>
 
-          {/* Description Paragraphs */}
-          <div className="font-[Helvetica] flex flex-col gap-[12px] font-normal text-[16px] sm:text-[14px] md:text-[16px] text-[#2B3279] leading-relaxed max-w-[672px] lg:max-w-[576px]">
-            <p>The exam software you've been patching together can't do this.</p>
-            <p>
-              Unitoppers brings your entire examination workflow, from question creation to results, under one roof, with AI doing the heavy lifting on integrity and insights.
-            </p>
+            {/* Description Paragraphs */}
+            <div className="font-[Helvetica] flex flex-col gap-[12px] font-normal text-[16px] sm:text-[14px] md:text-[16px] text-[#2B3279] leading-relaxed max-w-[672px] lg:max-w-[576px]">
+              <p>The exam software you've been patching together can't do this.</p>
+              <p>
+                Unitoppers brings your entire examination workflow, from question creation to results, under one roof, with AI doing the heavy lifting on integrity and insights.
+              </p>
+            </div>
           </div>
 
           {/* 4 Feature Points Stack */}

@@ -18,10 +18,55 @@ const SESSION_TIME_OPTIONS = [
   { id: 'evening', label: 'Evening Slot', time: '05:00 PM - 08:00 PM', icon: '🌙' },
 ];
 
+const POPULAR_CITIES = [
+  'Ahmedabad', 'Agra', 'Ajmer', 'Aligarh', 'Allahabad', 'Amravati', 'Amritsar', 'Asansol', 'Aurangabad',
+  'Bangalore', 'Bareilly', 'Bhavnagar', 'Bhilai', 'Bhopal', 'Bhubaneswar', 'Bhiwandi', 'Bikaner',
+  'Chennai', 'Chandigarh', 'Coimbatore', 'Cuttack',
+  'Delhi', 'Dehradun', 'Dhanbad', 'Durgapur',
+  'Faridabad', 'Firozabad',
+  'Ghaziabad', 'Gorakhpur', 'Gulbarga', 'Guntur', 'Gurgaon', 'Guwahati', 'Gwalior',
+  'Hyderabad', 'Howrah', 'Hubli-Dharwad',
+  'Indore', 'Jabalpur', 'Jaipur', 'Jalandhar', 'Jammu', 'Jamnagar', 'Jamshedpur', 'Jhansi', 'Jodhpur',
+  'Kolkata', 'Kalyan-Dombivli', 'Kanpur', 'Kochi', 'Kolhapur', 'Kota',
+  'Lucknow', 'Ludhiana', 'Loni',
+  'Mumbai', 'Madurai', 'Meerut', 'Mira-Bhayandar', 'Moradabad', 'Mysore',
+  'Nagpur', 'Nanded', 'Nashik', 'Navi Mumbai', 'Nellore', 'Noida',
+  'Patna', 'Pune', 'Pimpri-Chinchwad', 'Pondicherry',
+  'Raipur', 'Rajkot', 'Ranchi', 'Rourkela',
+  'Surat', 'Saharanpur', 'Salem', 'Solapur', 'Srinagar',
+  'Thane', 'Tiruchirappalli', 'Tiruppur',
+  'Ujjain',
+  'Vadodara', 'Varanasi', 'Vasai-Virar', 'Vijayawada', 'Visakhapatnam',
+  'Warangal'
+];
+
 export default function DemoModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
+  const [cities, setCities] = useState(POPULAR_CITIES);
+  const [citySuggestions, setCitySuggestions] = useState([]);
+  const [showCitySuggestions, setShowCitySuggestions] = useState(false);
+  const [instSuggestions, setInstSuggestions] = useState([]);
+  const [showInstSuggestions, setShowInstSuggestions] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Fetch all Indian cities from public JSON API
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/nshntarora/Indian-Cities-JSON/master/cities-name-list.json');
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setCities(data);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch cities from API, using fallback list:', error);
+      }
+    };
+    fetchCities();
+  }, []);
   const [demoForm, setDemoForm] = useState({
     name: '',
     institution: '',
@@ -110,6 +155,50 @@ export default function DemoModal({ isOpen, onClose }) {
       setFormErrors((prev) => ({ ...prev, [name]: undefined }));
     }
     setDemoForm((prev) => ({ ...prev, [name]: value }));
+
+    if (name === 'city') {
+      if (value.trim().length > 0) {
+        const filtered = cities.filter((city) =>
+          city.toLowerCase().startsWith(value.toLowerCase())
+        );
+        setCitySuggestions(filtered);
+        setShowCitySuggestions(true);
+      } else {
+        setCitySuggestions([]);
+        setShowCitySuggestions(false);
+      }
+    }
+
+    if (name === 'institution') {
+      if (value.trim().length > 0) {
+        const filtered = POPULAR_INSTITUTIONS.filter((inst) =>
+          inst.toLowerCase().includes(value.toLowerCase())
+        );
+        setInstSuggestions(filtered);
+        setShowInstSuggestions(true);
+      } else {
+        setInstSuggestions([]);
+        setShowInstSuggestions(false);
+      }
+    }
+  };
+
+  const handleSelectCity = (city) => {
+    setDemoForm((prev) => ({ ...prev, city }));
+    setCitySuggestions([]);
+    setShowCitySuggestions(false);
+    if (formErrors.city) {
+      setFormErrors((prev) => ({ ...prev, city: undefined }));
+    }
+  };
+
+  const handleSelectInst = (institution) => {
+    setDemoForm((prev) => ({ ...prev, institution }));
+    setInstSuggestions([]);
+    setShowInstSuggestions(false);
+    if (formErrors.institution) {
+      setFormErrors((prev) => ({ ...prev, institution: undefined }));
+    }
   };
 
   const handleBlur = (e) => {
@@ -155,7 +244,8 @@ export default function DemoModal({ isOpen, onClose }) {
       aria-label="Book a Free Demo Form"
     >
       <div
-        className={`relative w-full max-w-[540px] bg-white rounded-[24px] sm:rounded-[32px] shadow-2xl border border-slate-200/90 p-5 sm:p-7 md:p-8 max-h-[92vh] overflow-y-auto flex flex-col text-left font-[Helvetica] ${
+        data-lenis-prevent
+        className={`relative w-full max-w-[540px] bg-white rounded-[24px] sm:rounded-[32px] shadow-2xl border border-slate-200/90 p-5 sm:p-7 md:p-8 max-h-[92vh] overflow-y-auto scrollbar-none flex flex-col text-left font-[Helvetica] ${
           isClosing ? 'modal-card-exit' : 'modal-card-enter'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -182,7 +272,7 @@ export default function DemoModal({ isOpen, onClose }) {
               <h2 className="text-[18px] sm:text-[22px] font-bold text-[#2B3279] tracking-tight leading-snug">
                 Book a Free Demo Walkthrough
               </h2>
-              <p className="text-[12px] sm:text-[13px] text-slate-500 mt-1">
+              <p className="text-[12px] sm:text-[13px] text-slate-500 mt-[16px] sm:mt-1">
                 See how Unitoppers replaces 10+ tools and unifies your institution.
               </p>
             </div>
@@ -216,7 +306,7 @@ export default function DemoModal({ isOpen, onClose }) {
             </div>
 
             {/* Field 2: Institution Name */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 relative">
               <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
                 Institution Name <span className="text-red-500">*</span>
               </label>
@@ -231,20 +321,47 @@ export default function DemoModal({ isOpen, onClose }) {
                   name="institution"
                   value={demoForm.institution}
                   onChange={handleInputChange}
-                  onBlur={handleBlur}
+                  onFocus={() => {
+                    if (demoForm.institution.trim().length > 0) {
+                      const filtered = POPULAR_INSTITUTIONS.filter((inst) =>
+                        inst.toLowerCase().includes(demoForm.institution.toLowerCase())
+                      );
+                      setInstSuggestions(filtered);
+                      setShowInstSuggestions(true);
+                    }
+                  }}
+                  onBlur={() => setShowInstSuggestions(false)}
                   placeholder="e.g. St. Xavier's International School"
                   className={`w-full pl-10 pr-4 py-2.5 bg-slate-50 border ${
                     formErrors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
                   } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                  autoComplete="off"
                 />
               </div>
+              {showInstSuggestions && instSuggestions.length > 0 && (
+                <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
+                  {instSuggestions.slice(0, 10).map((inst) => (
+                    <button
+                      key={inst}
+                      type="button"
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        handleSelectInst(inst);
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
+                    >
+                      {inst}
+                    </button>
+                  ))}
+                </div>
+              )}
               {formErrors.institution && (
                 <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.institution}</span>
               )}
             </div>
 
             {/* Field 3: City */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 relative">
               <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
                 City <span className="text-red-500">*</span>
               </label>
@@ -259,13 +376,40 @@ export default function DemoModal({ isOpen, onClose }) {
                   name="city"
                   value={demoForm.city}
                   onChange={handleInputChange}
-                  onBlur={handleBlur}
+                  onFocus={() => {
+                    if (demoForm.city.trim().length > 0) {
+                      const filtered = cities.filter((city) =>
+                        city.toLowerCase().startsWith(demoForm.city.toLowerCase())
+                      );
+                      setCitySuggestions(filtered);
+                      setShowCitySuggestions(true);
+                    }
+                  }}
+                  onBlur={() => setShowCitySuggestions(false)}
                   placeholder="e.g. Chennai, Mumbai, Bangalore"
                   className={`w-full pl-10 pr-4 py-2.5 bg-slate-50 border ${
                     formErrors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
                   } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                  autoComplete="off"
                 />
               </div>
+              {showCitySuggestions && citySuggestions.length > 0 && (
+                <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
+                  {citySuggestions.slice(0, 10).map((city) => (
+                    <button
+                      key={city}
+                      type="button"
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        handleSelectCity(city);
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
+                    >
+                      {city}
+                    </button>
+                  ))}
+                </div>
+              )}
               {formErrors.city && (
                 <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.city}</span>
               )}

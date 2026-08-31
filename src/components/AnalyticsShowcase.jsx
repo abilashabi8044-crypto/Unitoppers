@@ -43,19 +43,22 @@ export default function AnalyticsShowcase() {
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] text-[#2B3279] tracking-tight leading-tight">
-            One dashboard replacing six departmental <span className="text-[#FF7A00]">reports.</span>
-          </h2>
+          {/* Heading & Descriptions Wrapper */}
+          <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full">
+            {/* Heading */}
+            <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] lg:text-[24px] gap-[24px] text-[#2B3279] tracking-tight leading-tight">
+              One dashboard replacing six departmental <span className="text-[#FF7A00]">reports.</span>
+            </h2>
 
-          {/* Descriptions */}
-          <div className="w-full max-w-[576px] xl:w-[920px] flex flex-col gap-[12px] font-[Helvetica] font-normal text-[16px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
-            <p>
-              Unitoppers is built for the scale and compliance needs of government schools and educational bodies, aligned with India's digital governance initiatives.
-            </p>
-            <p>
-              From student attendance to teacher performance, fee collection to infrastructure tracking, Unitoppers gives state education departments a single, real-time window into every institution under their purview.
-            </p>
+            {/* Descriptions */}
+            <div className="w-full max-w-[576px] xl:w-[920px] flex flex-col gap-[16px] font-[Helvetica] font-normal text-[16px] sm:text-[14px] lg:text-[16px] text-[#2B3279] leading-relaxed">
+              <p>
+                Unitoppers is built for the scale and compliance needs of government schools and educational bodies, aligned with India's digital governance initiatives.
+              </p>
+              <p>
+                From student attendance to teacher performance, fee collection to infrastructure tracking, Unitoppers gives state education departments a single, real-time window into every institution under their purview.
+              </p>
+            </div>
           </div>
 
           {/* 3 Bullet Point Cards (vertical stack) */}

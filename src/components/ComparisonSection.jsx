@@ -99,15 +99,18 @@ export default function ComparisonSection() {
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="font-[Helvetica] font-semibold text-[20px] sm:text-[24px] lg:text-[24px] gap-[16px] text-[#2B3279] tracking-tight">
-            Not just for the admin office. For <span className="text-[#FF7A00]">everyone</span> who runs the institution.
-          </h2>
+          {/* Heading & Subtitle Wrapper */}
+          <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full">
+            {/* Heading */}
+            <h2 className="font-[Helvetica] font-semibold text-[20px] sm:text-[24px] lg:text-[24px] gap-[16px] text-[#2B3279] tracking-tight">
+              Not just for the admin office. For <span className="text-[#FF7A00]">everyone</span> who runs the institution.
+            </h2>
 
-          {/* Subtitle */}
-          <div className="font-[Helvetica] font-medium text-[12px] sm:text-[16px] text-[#2B3279] space-y-1">
-            <p className="whitespace-nowrap sm:whitespace-normal">Unitoppers is designed for every role, from the chairman to the parent.</p>
-            <p className="whitespace-nowrap sm:whitespace-normal">Each stakeholder gets exactly what they need, nothing they don't.</p>
+            {/* Subtitle */}
+            <div className="font-[Helvetica] font-medium text-[12px] sm:text-[16px] text-[#2B3279] sm:space-y-1 px-4 sm:px-0">
+              <p className="inline sm:block whitespace-normal sm:whitespace-nowrap">Unitoppers is designed for every role, from the chairman to the parent. </p>
+              <p className="inline sm:block whitespace-normal sm:whitespace-nowrap">Each stakeholder gets exactly what they need, nothing they don't.</p>
+            </div>
           </div>
         </div>
 

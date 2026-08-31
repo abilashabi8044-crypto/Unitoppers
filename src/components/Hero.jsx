@@ -119,16 +119,18 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Main Headline */}
-        <h1 className="font-[Helvetica] font-semibold 2xl:-mt-1.5 text-[14px] min-[375px]:text-[16px] min-[400px]:text-[18px] sm:text-[24px] md:text-[30px] lg:text-[36px] xl:text-[2rem] 2xl:text-[2.25rem] p-[8px] leading-[118%] xl:leading-[115%] text-[#2B3279] tracking-tight max-w-[576px] sm:max-w-[672px] md:max-w-[768px] lg:max-w-[896px] xl:max-w-[896px] 2xl:max-w-[1024px]">
-          <span className="whitespace-nowrap sm:whitespace-normal">Your School Runs on 10 Different Software.</span><br />
-          <span className="text-[#FF7A00]">It Shouldn't.</span>
-        </h1>
+        {/* Headline & Subtitle Wrapper */}
+        <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full items-center">
+          <h1 className="font-[Helvetica] font-semibold 2xl:-mt-1.5 text-[14px] min-[375px]:text-[16px] min-[400px]:text-[24px] sm:text-[24px] md:text-[30px] lg:text-[36px] xl:text-[2rem] 2xl:text-[2.25rem] p-[8px] leading-[118%] xl:leading-[115%] text-[#2B3279] tracking-tight max-w-[576px] sm:max-w-[672px] md:max-w-[768px] lg:max-w-[896px] xl:max-w-[896px] 2xl:max-w-[1024px]">
+            <span>Your School Runs on 10 Different Software. </span><br className="hidden sm:block" />
+            <span className="text-[#FF7A00]">It Shouldn't.</span>
+          </h1>
 
-        {/* Subtitle */}
-        <p className="font-[Helvetica] text-[12px] -mt-[12px] sm:text-[14px] md:text-[14px] lg:text-[13px] lg:max-w-[672px] xl:text-[13px] xl:max-w-[672px] 2xl:text-[15px] leading-relaxed text-[#2B3279] w-full max-w-[1024px] 2xl:max-w-[768px] mx-auto">
-          Unitoppers replaces your fragmented stack of tools with one AI-powered platform, covering academics, finance, examinations, communication, HR, and more. One login. One database. Every department.
-        </p>
+          {/* Subtitle */}
+          <p className="font-[Helvetica] text-[16px] sm:text-[14px] md:text-[14px] lg:text-[13px] lg:max-w-[672px] xl:text-[13px] xl:max-w-[672px] 2xl:text-[15px] leading-relaxed text-[#2B3279] w-full max-w-[1024px] 2xl:max-w-[768px] mx-auto">
+            Unitoppers replaces your fragmented stack of tools with one AI-powered platform, covering academics, finance, examinations, communication, HR, and more. One login. One database. Every department.
+          </p>
+        </div>
 
         {/* CTA Buttons */}
         <div className="flex flex-row items-center justify-center gap-[8px] sm:gap-[12px] mt-[2px] pb-[12px] sm:mt-[4px] xl:mt-[0px] xl:pb-[4px] w-full max-w-[448px] sm:max-w-none mx-auto">

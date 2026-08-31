@@ -63,7 +63,7 @@ export default function FeaturesSection() {
       {/* Main Content Container */}
       <div className="relative z-10 max-w-8xl mx-auto flex flex-col items-center gap-[16px] sm:gap-[24px] lg:gap-[32px]">
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center gap-[14px] max-w-[768px] px-[4px]">
+        <div className="flex flex-col items-center text-center gap-[24px] max-w-[768px] px-[4px]">
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-[8px] px-[16px] py-[6px] rounded-[9999px]  border border-[#FF7A00]/50 shadow-2xs">
             <img src={mainLogo} alt="The platform" className="w-[40px] h-[24px] object-contain pointer-events-none select-none" />
@@ -72,15 +72,18 @@ export default function FeaturesSection() {
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="font-bold text-[20px] sm:text-[24px] lg:text-[24px] leading-tight text-[#2B3279] gap-[16px] tracking-tight px-[4px] sm:px-[0px]">
-            Everything your institution runs in <span className="text-[#FF7A00]">one place.</span>
-          </h2>
+          {/* Heading & Subtitle Wrapper */}
+          <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full">
+            {/* Heading */}
+            <h2 className="font-bold text-[20px] sm:text-[24px] lg:text-[24px] leading-tight text-[#2B3279] gap-[16px] tracking-tight px-[4px] sm:px-[0px]">
+              Everything your institution runs in <span className="text-[#FF7A00]">one place.</span>
+            </h2>
 
-          {/* Subtitle */}
-          <p className="w-full max-w-[672px] font-normal text-[14px] sm:text-[16px] text-slate-600">
-            Six fully integrated suites. One shared database. Zero duplication.
-          </p>
+            {/* Subtitle */}
+            <p className="w-full max-w-[672px] font-normal text-[14px] sm:text-[16px] text-slate-600">
+              Six fully integrated suites. One shared database. Zero duplication.
+            </p>
+          </div>
         </div>
 
         {/* 6 Feature Suites Grid (3 Columns x 2 Rows) */}
