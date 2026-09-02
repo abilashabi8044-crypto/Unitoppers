@@ -142,7 +142,7 @@ export default function DemoSection() {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    
+
     if (name === 'phone') {
       value = value.replace(/\D/g, '').slice(0, 15);
     }
@@ -170,7 +170,7 @@ export default function DemoSection() {
     <section id="demo-form" className="relative w-full mt-[0px] pt-[24px] pb-[24px] sm:pt-[48px] sm:pb-[48px] px-[16px] sm:px-[48px] bg-white overflow-hidden font-['Helvetica',sans-serif]">
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-8xl mx-auto flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-[24px] lg:gap-[32px]">
+      <div className="relative z-10 max-w-8xl mx-auto flex flex-col lg:flex-row items-stretch lg:items-stretch justify-between gap-[24px] lg:gap-[32px]">
 
         {/* LEFT COLUMN: Title, Description & stats.png Image Showcase */}
         <div className="flex flex-col items-start gap-[16px] w-full lg:w-[52%] text-left shrink-0">
@@ -190,166 +190,166 @@ export default function DemoSection() {
             <img
               src={statsImg}
               alt="Unitoppers Modular Platform Collage"
-              className="w-full h-auto object-contain block pointer-events-none select-none rounded-[16px]"
+              className="w-full h-auto xl:max-h-full object-contain block pointer-events-none select-none rounded-[16px]"
             />
           </div>
 
         </div>
 
         {/* RIGHT COLUMN: Lead Form Card */}
-        <div className="w-full lg:w-[48%] flex justify-center lg:self-center">
+        <div className="w-full lg:w-[48%] flex justify-center lg:self-stretch">
 
-          <div className="w-full max-w-[672px] mt-[20px] lg:mt-0 h-auto lg:h-fit bg-white rounded-[24px] p-[24px] sm:p-[32px] lg:p-[28px] xl:p-[32px] border border-slate-300 shadow-xl text-left flex flex-col justify-start">
+          <div className="w-full max-w-[672px] mt-[20px] lg:mt-0 h-auto lg:h-full bg-white rounded-[24px] p-[24px] sm:p-[32px] lg:p-[28px] xl:p-[32px] border border-slate-300 shadow-xl text-left flex flex-col justify-start lg:justify-center">
 
             {!submitted ? (
               <form onSubmit={handleSubmit} className="flex flex-col gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
 
-                {/* Field 1: Your Name */}
-                <div className="flex flex-col gap-[6px]">
-                  <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Your Name</label>
-                  <div className="relative">
-                    <img
-                      src={nameIcon}
-                      alt="Name"
-                      className="w-[16px] h-[16px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none select-none"
-                    />
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Your name"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.name ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
-                    />
-                  </div>
-                  {errors.name && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.name}</span>}
-                </div>
-
-                {/* Field 2: Institution Name */}
-                <div className="flex flex-col gap-[6px]">
-                  <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Institution Name</label>
-                  <div className="relative">
-                    <img
-                      src={uniIcon}
-                      alt="Institution"
-                      className="w-[16px] h-[16px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none select-none"
-                    />
-                    <input
-                      type="text"
-                      name="institution"
-                      value={formData.institution}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder="Enter your institution name"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
-                    />
-                  </div>
-                  {errors.institution && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.institution}</span>}
-                </div>
-
-                {/* Field 3: City */}
-                <div 
-                  className="flex flex-col gap-[6px] relative"
-                  onBlur={(e) => {
-                    if (!e.currentTarget.contains(e.relatedTarget)) {
-                      setShowCitySuggestions(false);
-                    }
-                  }}
-                >
-                  <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">City / State</label>
-                  <div className="relative">
-                    <img
-                      src={locationIcon}
-                      alt="Location"
-                      className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none opacity-80"
-                    />
-                    <input
-                      type="text"
-                      name="city"
-                      value={formData.city || ''}
-                      onChange={handleChange}
-                      onFocus={() => {
-                        if ((formData.city || '').trim().length > 0) {
-                          const filtered = cities.filter((city) =>
-                            city.toLowerCase().includes(formData.city.toLowerCase())
-                          );
-                          setCitySuggestions(filtered);
-                          setShowCitySuggestions(true);
-                        } else {
-                          setCitySuggestions(cities);
-                          setShowCitySuggestions(true);
-                        }
-                      }}
-                      placeholder="e.g. Mumbai, Chennai"
-                      className={`w-full pl-[40px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${
-                        errors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                      } rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
-                      autoComplete="off"
-                    />
-                  </div>
-                  {showCitySuggestions && citySuggestions.length > 0 && (
-                    <div 
-                      className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-[12px] shadow-lg scrollbar-thin scrollbar-thumb-slate-300 py-[6px] flex flex-col"
-                      tabIndex={-1}
-                    >
-                      {citySuggestions.slice(0, 50).map((city) => (
-                        <button
-                          key={city}
-                          type="button"
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                            handleSelectCity(city);
-                          }}
-                          className="w-full text-left px-[16px] py-[8px] hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
-                        >
-                          {city}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                  {errors.city && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.city}</span>}
-                </div>
-
-                {/* Field 4: Phone Number */}
-                <div className="flex flex-col gap-[6px]">
-                  <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Phone Number</label>
-                  <div className="relative flex">
-                    <select
-                      name="countryCode"
-                      value={formData.countryCode || '+91'}
-                      onChange={handleChange}
-                      className="w-[110px] pl-[12px] pr-[8px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border border-slate-200 border-r-0 rounded-l-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    >
-                      {countryCodes.length > 0 ? (
-                        countryCodes.map((cc, idx) => (
-                          <option key={idx} value={cc.dial_code}>
-                            {cc.code} ({cc.dial_code})
-                          </option>
-                        ))
-                      ) : (
-                        <option value="+91">IN (+91)</option>
-                      )}
-                    </select>
-                    <div className="relative flex-1">
-                      {/* <img
-                        src={phoneIcon}
-                        alt="Phone"
-                        className="w-[16px] h-[16px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
-                      /> */}
+                {/* ROW 1: Name & Institution */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
+                  {/* Field 1: Your Name */}
+                  <div className="flex flex-col gap-[6px]">
+                    <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Your Name</label>
+                    <div className="relative">
+                      <img
+                        src={nameIcon}
+                        alt="Name"
+                        className="w-[16px] h-[16px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none select-none"
+                      />
                       <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone || ''}
+                        type="text"
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="Mobile Number"
-                        maxLength={15}
-                        className={`w-full pl-[16px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-r-[12px] border-l-0 text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                        placeholder="Your name"
+                        className={`w-full pl-[40px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.name ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
                       />
                     </div>
+                    {errors.name && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.name}</span>}
                   </div>
-                  {errors.phone && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.phone}</span>}
+
+                  {/* Field 2: Institution Name */}
+                  <div className="flex flex-col gap-[6px]">
+                    <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Institution Name</label>
+                    <div className="relative">
+                      <img
+                        src={uniIcon}
+                        alt="Institution"
+                        className="w-[16px] h-[16px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none select-none"
+                      />
+                      <input
+                        type="text"
+                        name="institution"
+                        value={formData.institution}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Institution name"
+                        className={`w-full pl-[40px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                      />
+                    </div>
+                    {errors.institution && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.institution}</span>}
+                  </div>
+                </div>
+
+                {/* ROW 2: City & Phone */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
+                  {/* Field 3: City */}
+                  <div
+                    className="flex flex-col gap-[6px] relative"
+                    onBlur={(e) => {
+                      if (!e.currentTarget.contains(e.relatedTarget)) {
+                        setShowCitySuggestions(false);
+                      }
+                    }}
+                  >
+                    <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">City / State</label>
+                    <div className="relative">
+                      <img
+                        src={locationIcon}
+                        alt="Location"
+                        className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] object-contain absolute left-[14px] top-1/2 -translate-y-1/2 pointer-events-none opacity-80"
+                      />
+                      <input
+                        type="text"
+                        name="city"
+                        value={formData.city || ''}
+                        onChange={handleChange}
+                        onFocus={() => {
+                          if ((formData.city || '').trim().length > 0) {
+                            const filtered = cities.filter((city) =>
+                              city.toLowerCase().includes(formData.city.toLowerCase())
+                            );
+                            setCitySuggestions(filtered);
+                            setShowCitySuggestions(true);
+                          } else {
+                            setCitySuggestions(cities);
+                            setShowCitySuggestions(true);
+                          }
+                        }}
+                        placeholder="e.g. Mumbai, Chennai"
+                        className={`w-full pl-[40px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                          } rounded-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
+                        autoComplete="off"
+                      />
+                    </div>
+                    {showCitySuggestions && citySuggestions.length > 0 && (
+                      <div
+                        className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-[12px] shadow-lg scrollbar-thin scrollbar-thumb-slate-300 py-[6px] flex flex-col"
+                        tabIndex={-1}
+                      >
+                        {citySuggestions.slice(0, 50).map((city) => (
+                          <button
+                            key={city}
+                            type="button"
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              handleSelectCity(city);
+                            }}
+                            className="w-full text-left px-[16px] py-[8px] hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
+                          >
+                            {city}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {errors.city && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.city}</span>}
+                  </div>
+
+                  {/* Field 4: Phone Number */}
+                  <div className="flex flex-col gap-[6px]">
+                    <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Phone Number</label>
+                    <div className="relative flex">
+                      <select
+                        name="countryCode"
+                        value={formData.countryCode || '+91'}
+                        onChange={handleChange}
+                        className="w-[110px] pl-[12px] pr-[8px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border border-slate-200 border-r-0 rounded-l-[12px] text-[12px] sm:text-[14px] text-slate-800 focus:outline-none focus:border-[#FF7A00] transition-colors"
+                      >
+                        {countryCodes.length > 0 ? (
+                          countryCodes.map((cc, idx) => (
+                            <option key={idx} value={cc.dial_code}>
+                              {cc.code} ({cc.dial_code})
+                            </option>
+                          ))
+                        ) : (
+                          <option value="+91">IN (+91)</option>
+                        )}
+                      </select>
+                      <div className="relative flex-1">
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone || ''}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="Mobile Number"
+                          maxLength={15}
+                          className={`w-full pl-[16px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-r-[12px] border-l-0 text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                        />
+                      </div>
+                    </div>
+                    {errors.phone && <span className="text-red-500 text-[11px] font-medium -mt-[2px] ml-[4px]">{errors.phone}</span>}
+                  </div>
                 </div>
 
                 {/* Field 5: Email Address */}

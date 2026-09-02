@@ -121,7 +121,7 @@ export default function Hero() {
 
         {/* Headline & Subtitle Wrapper */}
         <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full items-center">
-          <h1 className="font-[Helvetica] font-semibold 2xl:-mt-1.5 text-[14px] min-[375px]:text-[20px] min-[400px]:text-[24px] sm:text-[24px] md:text-[30px] lg:text-[36px] xl:text-[2rem] 2xl:text-[2.25rem] p-[8px] leading-[118%] xl:leading-[115%] text-[#2B3279] tracking-tight max-w-[576px] sm:max-w-[672px] md:max-w-[768px] lg:max-w-[896px] xl:max-w-[896px] 2xl:max-w-[1024px]">
+          <h1 className="font-[Helvetica] font-semibold 2xl:-mt-1.5 text-[24px] min-[375px]:text-[20px] min-[400px]:text-[24px] sm:text-[24px] md:text-[30px] lg:text-[36px] xl:text-[2rem] 2xl:text-[2.25rem] p-[8px] leading-[118%] xl:leading-[115%] text-[#2B3279] tracking-tight max-w-[576px] sm:max-w-[672px] md:max-w-[768px] lg:max-w-[896px] xl:max-w-[896px] 2xl:max-w-[1024px]">
             <span>Your School Runs on 10 Different Software. </span><br className="hidden sm:block" />
             <span className="text-[#FF7A00]">It Shouldn't.</span>
           </h1>
