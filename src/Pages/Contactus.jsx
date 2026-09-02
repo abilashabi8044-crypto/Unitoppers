@@ -504,7 +504,7 @@ export default function Contactus() {
                     }}
                   >
                     <label className="text-[13px] font-bold text-[#2B3279]">
-                      City / State <span className="text-red-500">*</span>
+                      City <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <img
@@ -529,7 +529,7 @@ export default function Contactus() {
                             setShowCitySuggestions(true);
                           }
                         }}
-                        placeholder="Bengaluru, Karnataka"
+                        placeholder="Chennai"
                         className={`w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border ${
                           errors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
                         } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
