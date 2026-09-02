@@ -49,7 +49,7 @@ export default function DemoModal({ isOpen, onClose }) {
   const [instSuggestions, setInstSuggestions] = useState([]);
   const [showInstSuggestions, setShowInstSuggestions] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   // Fetch all Indian cities from public JSON API
   useEffect(() => {
@@ -125,7 +125,6 @@ export default function DemoModal({ isOpen, onClose }) {
     setIsClosing(true);
     setTimeout(() => {
       setIsClosing(false);
-      setIsSubmitted(false);
       onClose();
     }, 250);
   };
@@ -154,9 +153,6 @@ export default function DemoModal({ isOpen, onClose }) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!val) return 'Email address is required';
         if (!emailRegex.test(val)) return 'Enter a valid email address';
-        break;
-      case 'sessionTime':
-        if (!val) return 'Please select a session time slot';
         break;
       default:
         break;
@@ -231,7 +227,7 @@ export default function DemoModal({ isOpen, onClose }) {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
-    ['name', 'institution', 'city', 'phone', 'email', 'sessionTime'].forEach((field) => {
+    ['name', 'institution', 'city', 'phone', 'email'].forEach((field) => {
       const err = validateField(field, demoForm[field]);
       if (err) newErrors[field] = err;
     });
@@ -242,7 +238,23 @@ export default function DemoModal({ isOpen, onClose }) {
     }
 
     setFormErrors({});
-    setIsSubmitted(true);
+
+    // Reset local form
+    setDemoForm({
+      name: '',
+      institution: '',
+      city: '',
+      phone: '',
+      email: '',
+      countryCode: '+91',
+    });
+
+    // Show toast
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+      handleClose(); // Close modal after toast
+    }, 3500);
 
     // Sync with Redux store
     Object.keys(demoForm).forEach((field) => {
@@ -277,7 +289,6 @@ export default function DemoModal({ isOpen, onClose }) {
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
-        {!isSubmitted ? (
           <form onSubmit={handleFormSubmit} className="flex flex-col gap-1.5 sm:gap-2">
             {/* Modal Title & Header */}
             <div className="pr-8">
@@ -515,72 +526,7 @@ export default function DemoModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* Field 6: Booking Sessions Time (Preferred Slot Selection) */}
-            <div className="flex flex-col gap-1.5 mt-0.5">
-              <div className="flex items-center justify-between">
-                <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279] flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#FF7A00]" />
-                  <span>Preferred Demo Session Time</span>
-                  <span className="text-red-500">*</span>
-                </label>
-              </div>
 
-              {/* 3 Session Slot Buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
-                {SESSION_TIME_OPTIONS.map((slot) => {
-                  const fullSlotName = `${slot.label} (${slot.time})`;
-                  const isSelected = demoForm.sessionTime === fullSlotName;
-                  return (
-                    <button
-                      key={slot.id}
-                      type="button"
-                      onClick={() => {
-                        setDemoForm((prev) => ({ ...prev, sessionTime: fullSlotName }));
-                        if (formErrors.sessionTime) {
-                          setFormErrors((prev) => ({ ...prev, sessionTime: undefined }));
-                        }
-                      }}
-                      className={`p-1.5 sm:p-2 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${isSelected
-                        ? 'border-[#FF7A00] bg-orange-50/80 ring-2 ring-[#FF7A00]/20 shadow-xs'
-                        : 'border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300'
-                        }`}
-                    >
-                      <div className="flex items-center justify-between w-full">
-                        <span className="text-sm">{slot.icon}</span>
-                        <span
-                          className={`text-[11px] font-bold ${isSelected ? 'text-[#FF7A00]' : 'text-slate-700'
-                            }`}
-                        >
-                          {slot.label}
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-slate-500 font-mono mt-1">
-                        {slot.time}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-              {formErrors.sessionTime && (
-                <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.sessionTime}</span>
-              )}
-            </div>
-
-            {/* Optional Preferred Date Picker */}
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] font-semibold text-slate-600 flex items-center gap-1.5">
-                <Calendar className="w-3 h-3 text-slate-500" />
-                <span>Preferred Date (Optional)</span>
-              </label>
-              <input
-                type="date"
-                name="bookingDate"
-                min={new Date().toISOString().split('T')[0]}
-                value={demoForm.bookingDate}
-                onChange={handleInputChange}
-                className="w-full px-3.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-700 focus:outline-none focus:border-[#FF7A00] transition-colors"
-              />
-            </div>
 
             {/* Submit Button */}
             <button
@@ -595,50 +541,15 @@ export default function DemoModal({ isOpen, onClose }) {
             <p className="text-[11px] text-center text-slate-400 font-medium -mt-1">
               🔒 100% Free • No obligation • Personalized for your institution
             </p>
-          </form>
-        ) : (
-          /* Success State */
-          <div className="flex flex-col items-center text-center gap-3 py-6 sm:py-8">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 animate-bounce">
-              <CheckCircle2 className="w-9 h-9" />
-            </div>
-            <div className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold">
-              Demo Session Confirmed
-            </div>
-            <h3 className="font-extrabold text-[20px] sm:text-[22px] text-[#2B3279]">
-              Thank You, {demoForm.name}!
-            </h3>
-            <p className="text-[13px] text-slate-600 max-w-[420px] leading-relaxed">
-              Your live walkthrough for <strong className="text-[#2B3279]">{demoForm.institution}</strong> in <strong className="text-[#2B3279]">{demoForm.city}</strong> has been registered.
-            </p>
+              </form>
+      </div>
 
-            {/* Booking Summary Box */}
-            <div className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left flex flex-col gap-2 mt-2">
-              <div className="flex items-center justify-between text-xs text-slate-600">
-                <span className="font-medium">Selected Slot:</span>
-                <span className="font-bold text-[#FF7A00]">{demoForm.sessionTime}</span>
-              </div>
-              {demoForm.bookingDate && (
-                <div className="flex items-center justify-between text-xs text-slate-600">
-                  <span className="font-medium">Preferred Date:</span>
-                  <span className="font-semibold text-slate-800">{demoForm.bookingDate}</span>
-                </div>
-              )}
-              <div className="flex items-center justify-between text-xs text-slate-600">
-                <span className="font-medium">Contact:</span>
-                <span className="font-semibold text-slate-800">{demoForm.countryCode} {demoForm.phone} / {demoForm.email}</span>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={handleClose}
-              className="mt-3 px-8 py-2.5 bg-[#2B3279] hover:bg-[#1E255E] text-white font-bold text-[13px] rounded-xl transition-all shadow-md cursor-pointer"
-            >
-              Done
-            </button>
-          </div>
-        )}
+      {/* Toast Notification */}
+      <div 
+        className={`fixed bottom-[24px] right-[24px] bg-green-500 text-white px-[20px] py-[12px] rounded-[12px] shadow-2xl z-[100] flex items-center gap-[10px] transition-all duration-300 transform ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-[20px] opacity-0 pointer-events-none'}`}
+      >
+        <CheckCircle2 className="w-[20px] h-[20px] text-white" />
+        <span className="font-[Helvetica] font-medium text-[14px]">Demo requested successfully!</span>
       </div>
     </div>,
     document.body

@@ -22,14 +22,7 @@ import uniIcon from '../assets/demo-section-icons/hugeicons_university.png';
 import locationIcon from '../assets/demo-section-icons/boxicons_location-filled.png';
 import mailIcon from '../assets/demo-section-icons/material-symbols_mail.png';
 
-const INQUIRY_TYPES = [
-  'General Inquiry',
-  'Product Demo & Walkthrough',
-  'Pricing & Institutional Licensing',
-  'Migration from Legacy Software',
-  'Multi-Campus ERP Setup',
-  'Partnership & Integration',
-];
+
 
 const POPULAR_CITIES = [
   'Ahmedabad', 'Agra', 'Ajmer', 'Aligarh', 'Allahabad', 'Amravati', 'Amritsar', 'Asansol', 'Aurangabad',
@@ -63,12 +56,10 @@ export default function Contactus() {
     phone: '',
     institution: '',
     city: '',
-    inquiryType: 'Product Demo & Walkthrough',
-    message: '',
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [cities, setCities] = useState(POPULAR_CITIES);
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [showCitySuggestions, setShowCitySuggestions] = useState(false);
@@ -136,9 +127,6 @@ export default function Contactus() {
       case 'city':
         if (!val) return 'City is required';
         break;
-      case 'message':
-        if (!val) return 'Please enter a brief message';
-        break;
       default:
         break;
     }
@@ -181,7 +169,7 @@ export default function Contactus() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
-    ['name', 'email', 'phone', 'institution', 'city', 'message'].forEach((key) => {
+    ['name', 'email', 'phone', 'institution', 'city'].forEach((key) => {
       const err = validateField(key, formData[key]);
       if (err) newErrors[key] = err;
     });
@@ -192,7 +180,11 @@ export default function Contactus() {
     }
 
     setErrors({});
-    setIsSubmitted(true);
+    handleReset();
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3500);
   };
 
   const handleReset = () => {
@@ -203,10 +195,8 @@ export default function Contactus() {
       phone: '',
       institution: '',
       city: '',
-      inquiryType: 'Product Demo & Walkthrough',
-      message: '',
     });
-    setIsSubmitted(false);
+
     setErrors({});
   };
 
@@ -352,7 +342,7 @@ export default function Contactus() {
           {/* RIGHT COLUMN: Contact Message Form (7 cols) */}
           <div className="lg:col-span-7 bg-white rounded-[28px] p-[24px] sm:p-[36px] border border-slate-200 shadow-xl text-left">
             
-            {!isSubmitted ? (
+
               <form onSubmit={handleSubmit} className="flex flex-col gap-[16px]">
                 <div>
                   <h2 className="font-bold text-[20px] sm:text-[24px] text-[#2B3279] tracking-tight">
@@ -492,8 +482,8 @@ export default function Contactus() {
                   </div>
                 </div>
 
-                {/* Grid: City & Inquiry Type */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+                {/* Grid: City */}
+                <div className="grid grid-cols-1 gap-[14px]">
                   {/* City */}
                   <div 
                     className="flex flex-col gap-[6px] relative"
@@ -558,42 +548,6 @@ export default function Contactus() {
                     )}
                     {errors.city && <span className="text-red-500 text-[11px] font-medium ml-1">{errors.city}</span>}
                   </div>
-
-                  {/* Inquiry Topic */}
-                  <div className="flex flex-col gap-[6px]">
-                    <label className="text-[13px] font-bold text-[#2B3279]">
-                      Topic of Interest
-                    </label>
-                    <select
-                      name="inquiryType"
-                      value={formData.inquiryType}
-                      onChange={handleInputChange}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 focus:border-[#FF7A00] focus:bg-white rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors cursor-pointer"
-                    >
-                      {INQUIRY_TYPES.map((type) => (
-                        <option key={type} value={type}>{type}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message Textarea */}
-                <div className="flex flex-col gap-[6px]">
-                  <label className="text-[13px] font-bold text-[#2B3279]">
-                    How can we help your institution? <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    placeholder="Tell us about your campus requirements, current software stack, or specific challenges..."
-                    className={`w-full p-3.5 bg-slate-50 border ${
-                      errors.message ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                    } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors resize-none`}
-                  />
-                  {errors.message && <span className="text-red-500 text-[11px] font-medium ml-1">{errors.message}</span>}
                 </div>
 
                 {/* Submit Button */}
@@ -609,32 +563,19 @@ export default function Contactus() {
                   🔒 We respect your privacy. No spam or third-party sharing.
                 </p>
               </form>
-            ) : (
-              /* Success Submission State */
-              <div className="flex flex-col items-center text-center gap-4 py-12">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 animate-bounce">
-                  <CheckCircle2 className="w-9 h-9" />
-                </div>
-                <h3 className="font-extrabold text-[22px] sm:text-[24px] text-[#2B3279]">
-                  Message Successfully Sent!
-                </h3>
-                <p className="text-[14px] text-slate-600 max-w-[440px] leading-relaxed">
-                  Thank you, <strong className="text-[#2B3279]">{formData.name}</strong>. Our institutional implementation specialist will review your inquiry for <strong className="text-[#2B3279]">{formData.institution}</strong> and respond within 15 minutes.
-                </p>
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="mt-4 px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[13px] rounded-xl transition-colors cursor-pointer"
-                >
-                  Send Another Message
-                </button>
-              </div>
-            )}
 
           </div>
 
         </div>
       </section>
+
+      {/* Toast Notification */}
+      <div 
+        className={`fixed bottom-[24px] right-[24px] bg-green-500 text-white px-[20px] py-[12px] rounded-[12px] shadow-2xl z-[100] flex items-center gap-[10px] transition-all duration-300 transform ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-[20px] opacity-0 pointer-events-none'}`}
+      >
+        <CheckCircle2 className="w-[20px] h-[20px] text-white" />
+        <span className="font-[Helvetica] font-medium text-[14px]">Message sent successfully!</span>
+      </div>
 
       {/* Footer */}
       <Footer />

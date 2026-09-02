@@ -43,6 +43,7 @@ export default function DemoSection() {
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [showCitySuggestions, setShowCitySuggestions] = useState(false);
   const [countryCodes, setCountryCodes] = useState([]);
+  const [showToast, setShowToast] = useState(false);
 
   React.useEffect(() => {
     const fetchCities = async () => {
@@ -138,6 +139,13 @@ export default function DemoSection() {
 
     setErrors({});
     dispatch(submitDemoRequest());
+    dispatch(resetDemoForm());
+    
+    // Show Toast Notification
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3500);
   };
 
   const handleChange = (e) => {
@@ -201,7 +209,7 @@ export default function DemoSection() {
 
           <div className="w-full max-w-[672px] mt-[20px] lg:mt-0 h-auto lg:h-full bg-white rounded-[24px] p-[24px] sm:p-[32px] lg:p-[28px] xl:p-[32px] border border-slate-300 shadow-xl text-left flex flex-col justify-start lg:justify-center">
 
-            {!submitted ? (
+
               <form onSubmit={handleSubmit} className="flex flex-col gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
 
                 {/* ROW 1: Name & Institution */}
@@ -421,25 +429,6 @@ export default function DemoSection() {
                 </div>
 
               </form>
-            ) : (
-              /* Success Submission State */
-              <div className="flex flex-col items-center text-center gap-[16px] py-[32px]">
-                <div className="w-[64px] h-[64px] rounded-[9999px] bg-emerald-50 text-emerald-500 flex items-center justify-center shadow-lg">
-                  <CheckCircle2 className="w-[40px] h-[40px]" />
-                </div>
-                <h3 className="font-extrabold text-[20px] text-[#2B3279]">Demo Request Received!</h3>
-                <p className="text-[12px] sm:text-[14px] text-[#2B3279] leading-relaxed">
-                  Thank you, <span className="font-bold text-[#2B3279]">{formData.name}</span>. Our implementation specialist will contact you shortly to schedule your personalized demo for <span className="font-bold text-[#2B3279]">{formData.institution}</span>.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => dispatch(resetDemoForm())}
-                  className="mt-[16px] px-[24px] py-[8px] bg-slate-100 text-slate-700 font-semibold text-[12px] rounded-[9999px] hover:bg-slate-200 transition-colors"
-                >
-                  Submit Another Request
-                </button>
-              </div>
-            )}
 
           </div>
 
@@ -447,6 +436,13 @@ export default function DemoSection() {
 
       </div>
 
+      {/* Toast Notification */}
+      <div 
+        className={`fixed bottom-[24px] right-[24px] bg-green-500 text-white px-[20px] py-[12px] rounded-[12px] shadow-2xl z-[100] flex items-center gap-[10px] transition-all duration-300 transform ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-[20px] opacity-0 pointer-events-none'}`}
+      >
+        <CheckCircle2 className="w-[20px] h-[20px] text-white" />
+        <span className="font-[Helvetica] font-medium text-[14px]">Demo requested successfully!</span>
+      </div>
     </section>
   );
 }
