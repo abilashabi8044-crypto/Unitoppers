@@ -12,6 +12,7 @@ import phoneIcon from '../assets/demo-section-icons/ic_baseline-phone.png';
 import mailIcon from '../assets/demo-section-icons/material-symbols_mail.png';
 import downloadIcon from '../assets/demo-section-icons/download-lg.png';
 import shieldIcon from '../assets/demo-section-icons/shieldcheck.png';
+import productBooklet from '../assets/unitoppers booklet.pdf';
 
 const POPULAR_CITIES = [
   'Ahmedabad', 'Agra', 'Ajmer', 'Aligarh', 'Allahabad', 'Amravati', 'Amritsar', 'Asansol', 'Aurangabad',
@@ -410,9 +411,13 @@ export default function DemoSection() {
                     </div>
                     <div className="font-[Helvetica] text-[#2B3279]">
                       <span>Not ready for a demo? </span>
-                      <button type="button" onClick={() => alert('Product booklet download link sent!')} className="font-bold text-[#2B3279] hover:underline cursor-pointer">
+                      <a 
+                        href={productBooklet} 
+                        download="Unitoppers Booklet.pdf" 
+                        className="font-bold text-[#2B3279] hover:underline cursor-pointer inline-block"
+                      >
                         Download the product booklet
-                      </button>
+                      </a>
                     </div>
                   </div>
 
