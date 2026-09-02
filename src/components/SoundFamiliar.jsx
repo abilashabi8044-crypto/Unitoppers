@@ -78,7 +78,7 @@ export default function SoundFamiliar() {
           <h2 className="font-[Helvetica] font-bold text-[20px] sm:text-[24px] text-[#0B133F] tracking-tight">
             Sound familiar?
           </h2>
-          <p className="font-[Helvetica] font-normal text-[14px] sm:text-[16px] text-[#2B3279]/80">
+          <p className="font-[Helvetica] font-normal text-[16px] sm:text-[16px] text-[#2B3279]/80">
             Your institution probably runs all of these - separately.
           </p>
         </div>

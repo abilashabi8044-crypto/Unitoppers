@@ -88,7 +88,7 @@ export default function TrustSection() {
             </h2>
 
             {/* Subtitle */}
-            <p className="font-[Helvetica] font-medium text-[12px] sm:text-[16px] text-[#2B3279]">
+            <p className="font-[Helvetica] font-medium text-[16px] sm:text-[16px] text-[#2B3279]">
               Explore the latest trends in educational management software.
             </p>
           </div>

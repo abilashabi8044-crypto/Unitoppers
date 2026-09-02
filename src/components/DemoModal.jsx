@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { updateFormField, submitDemoRequest } from '../store/slices/demoSlice';
 import arrow from '../assets/hero/arrow-right.png';
-import { X, CheckCircle2, Clock, Calendar, Sparkles } from 'lucide-react';
+import { X, CheckCircle2, Clock, Calendar } from 'lucide-react';
 
 // Form Field Icons
 import nameIcon from '../assets/demo-section-icons/fluent-color_people-32.png';
@@ -131,9 +131,9 @@ export default function DemoModal({ isOpen, onClose }) {
         if (val.length < 2) return 'City must be at least 2 characters';
         break;
       case 'phone':
-        const phoneRegex = /^[+]?[\d\s-]{10,15}$/;
+        const phoneRegex = /^\d{10}$/;
         if (!val) return 'Phone number is required';
-        if (!phoneRegex.test(val)) return 'Enter a valid 10+ digit phone number';
+        if (!phoneRegex.test(val)) return 'Enter a valid 10-digit phone number';
         break;
       case 'email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -150,7 +150,12 @@ export default function DemoModal({ isOpen, onClose }) {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+
+    if (name === 'phone') {
+      value = value.replace(/\D/g, '').slice(0, 10);
+    }
+
     if (formErrors[name]) {
       setFormErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -235,9 +240,8 @@ export default function DemoModal({ isOpen, onClose }) {
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/80 backdrop-blur-md ${
-        isClosing ? 'modal-backdrop-exit' : 'modal-backdrop-enter'
-      }`}
+      className={`fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/80 backdrop-blur-md ${isClosing ? 'modal-backdrop-exit' : 'modal-backdrop-enter'
+        }`}
       onClick={handleClose}
       role="dialog"
       aria-modal="true"
@@ -245,9 +249,8 @@ export default function DemoModal({ isOpen, onClose }) {
     >
       <div
         data-lenis-prevent
-        className={`relative w-full max-w-[540px] bg-white rounded-[24px] sm:rounded-[32px] shadow-2xl border border-slate-200/90 p-5 sm:p-7 md:p-8 max-h-[92vh] overflow-y-auto scrollbar-none flex flex-col text-left font-[Helvetica] ${
-          isClosing ? 'modal-card-exit' : 'modal-card-enter'
-        }`}
+        className={`relative w-full max-w-[540px] bg-white rounded-[24px] sm:rounded-[32px] shadow-2xl border border-slate-200/90 p-3 sm:p-5 max-h-[92vh] overflow-y-auto scrollbar-none flex flex-col text-left font-[Helvetica] ${isClosing ? 'modal-card-exit' : 'modal-card-enter'
+          }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -260,19 +263,13 @@ export default function DemoModal({ isOpen, onClose }) {
         </button>
 
         {!isSubmitted ? (
-          <form onSubmit={handleFormSubmit} className="flex flex-col gap-3.5 sm:gap-4">
+          <form onSubmit={handleFormSubmit} className="flex flex-col gap-1.5 sm:gap-2">
             {/* Modal Title & Header */}
             <div className="pr-8">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-50 border border-orange-200 rounded-full mb-2">
-                <Sparkles className="w-3.5 h-3.5 text-[#FF7A00]" />
-                <span className="text-[11px] font-bold text-[#FF7A00] tracking-wide uppercase">
-                  Live 1-on-1 Demo
-                </span>
-              </div>
-              <h2 className="text-[18px] sm:text-[22px] font-bold text-[#2B3279] tracking-tight leading-snug">
+              <h2 className="text-[16px] sm:text-[22px] font-bold text-[#2B3279] tracking-tight leading-snug">
                 Book a Free Demo Walkthrough
               </h2>
-              <p className="text-[12px] sm:text-[13px] text-slate-500 mt-[16px] sm:mt-1">
+              <p className="text-[12px] sm:text-[13px] text-slate-500 mt-1 hidden sm:block">
                 See how Unitoppers replaces 10+ tools and unifies your institution.
               </p>
             </div>
@@ -295,9 +292,8 @@ export default function DemoModal({ isOpen, onClose }) {
                   onChange={handleInputChange}
                   onBlur={handleBlur}
                   placeholder="e.g. Dr. Rajesh Kumar"
-                  className={`w-full pl-10 pr-4 py-2.5 bg-slate-50 border ${
-                    formErrors.name ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                  } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                  className={`w-full pl-10 pr-4 py-1.5 bg-slate-50 border ${formErrors.name ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                    } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
                 />
               </div>
               {formErrors.name && (
@@ -305,118 +301,119 @@ export default function DemoModal({ isOpen, onClose }) {
               )}
             </div>
 
-            {/* Field 2: Institution Name */}
-            <div className="flex flex-col gap-1 relative">
-              <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
-                Institution Name <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <img
-                  src={uniIcon}
-                  alt="Institution"
-                  className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
-                />
-                <input
-                  type="text"
-                  name="institution"
-                  value={demoForm.institution}
-                  onChange={handleInputChange}
-                  onFocus={() => {
-                    if (demoForm.institution.trim().length > 0) {
-                      const filtered = POPULAR_INSTITUTIONS.filter((inst) =>
-                        inst.toLowerCase().includes(demoForm.institution.toLowerCase())
-                      );
-                      setInstSuggestions(filtered);
-                      setShowInstSuggestions(true);
-                    }
-                  }}
-                  onBlur={() => setShowInstSuggestions(false)}
-                  placeholder="e.g. St. Xavier's International School"
-                  className={`w-full pl-10 pr-4 py-2.5 bg-slate-50 border ${
-                    formErrors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                  } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
-                  autoComplete="off"
-                />
-              </div>
-              {showInstSuggestions && instSuggestions.length > 0 && (
-                <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
-                  {instSuggestions.slice(0, 10).map((inst) => (
-                    <button
-                      key={inst}
-                      type="button"
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        handleSelectInst(inst);
-                      }}
-                      className="w-full text-left px-4 py-2 hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
-                    >
-                      {inst}
-                    </button>
-                  ))}
+            {/* Field 2 & 3: Institution Name & City (Grid) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+              {/* Field 2: Institution Name */}
+              <div className="flex flex-col gap-1 relative">
+                <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
+                  Institution Name <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <img
+                    src={uniIcon}
+                    alt="Institution"
+                    className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
+                  />
+                  <input
+                    type="text"
+                    name="institution"
+                    value={demoForm.institution}
+                    onChange={handleInputChange}
+                    onFocus={() => {
+                      if (demoForm.institution.trim().length > 0) {
+                        const filtered = POPULAR_INSTITUTIONS.filter((inst) =>
+                          inst.toLowerCase().includes(demoForm.institution.toLowerCase())
+                        );
+                        setInstSuggestions(filtered);
+                        setShowInstSuggestions(true);
+                      }
+                    }}
+                    onBlur={() => setShowInstSuggestions(false)}
+                    placeholder="e.g. St. Xavier's International School"
+                    className={`w-full pl-10 pr-4 py-1.5 bg-slate-50 border ${formErrors.institution ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                      } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                    autoComplete="off"
+                  />
                 </div>
-              )}
-              {formErrors.institution && (
-                <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.institution}</span>
-              )}
-            </div>
+                {showInstSuggestions && instSuggestions.length > 0 && (
+                  <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
+                    {instSuggestions.slice(0, 10).map((inst) => (
+                      <button
+                        key={inst}
+                        type="button"
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          handleSelectInst(inst);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
+                      >
+                        {inst}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {formErrors.institution && (
+                  <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.institution}</span>
+                )}
+              </div>
 
-            {/* Field 3: City */}
-            <div className="flex flex-col gap-1 relative">
-              <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
-                City <span className="text-red-500">*</span>
-              </label>
-              <div className="relative">
-                <img
-                  src={locationIcon}
-                  alt="City"
-                  className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
-                />
-                <input
-                  type="text"
-                  name="city"
-                  value={demoForm.city}
-                  onChange={handleInputChange}
-                  onFocus={() => {
-                    if (demoForm.city.trim().length > 0) {
-                      const filtered = cities.filter((city) =>
-                        city.toLowerCase().startsWith(demoForm.city.toLowerCase())
-                      );
-                      setCitySuggestions(filtered);
-                      setShowCitySuggestions(true);
-                    }
-                  }}
-                  onBlur={() => setShowCitySuggestions(false)}
-                  placeholder="e.g. Chennai, Mumbai, Bangalore"
-                  className={`w-full pl-10 pr-4 py-2.5 bg-slate-50 border ${
-                    formErrors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                  } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
-                  autoComplete="off"
-                />
-              </div>
-              {showCitySuggestions && citySuggestions.length > 0 && (
-                <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
-                  {citySuggestions.slice(0, 10).map((city) => (
-                    <button
-                      key={city}
-                      type="button"
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        handleSelectCity(city);
-                      }}
-                      className="w-full text-left px-4 py-2 hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
-                    >
-                      {city}
-                    </button>
-                  ))}
+              {/* Field 3: City */}
+              <div className="flex flex-col gap-1 relative">
+                <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
+                  City <span className="text-red-500">*</span>
+                </label>
+                <div className="relative">
+                  <img
+                    src={locationIcon}
+                    alt="City"
+                    className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
+                  />
+                  <input
+                    type="text"
+                    name="city"
+                    value={demoForm.city}
+                    onChange={handleInputChange}
+                    onFocus={() => {
+                      if (demoForm.city.trim().length > 0) {
+                        const filtered = cities.filter((city) =>
+                          city.toLowerCase().startsWith(demoForm.city.toLowerCase())
+                        );
+                        setCitySuggestions(filtered);
+                        setShowCitySuggestions(true);
+                      }
+                    }}
+                    onBlur={() => setShowCitySuggestions(false)}
+                    placeholder="e.g. Chennai, Mumbai, Bangalore"
+                    className={`w-full pl-10 pr-4 py-1.5 bg-slate-50 border ${formErrors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                      } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                    autoComplete="off"
+                  />
                 </div>
-              )}
-              {formErrors.city && (
-                <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.city}</span>
-              )}
+                {showCitySuggestions && citySuggestions.length > 0 && (
+                  <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
+                    {citySuggestions.slice(0, 10).map((city) => (
+                      <button
+                        key={city}
+                        type="button"
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          handleSelectCity(city);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-slate-50 text-[13px] sm:text-[14px] text-slate-700 font-medium transition-colors cursor-pointer"
+                      >
+                        {city}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {formErrors.city && (
+                  <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.city}</span>
+                )}
+              </div>
             </div>
 
             {/* Field 4 & 5: Phone Number & Email Address (Grid) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
               {/* Phone Number */}
               <div className="flex flex-col gap-1">
                 <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
@@ -434,10 +431,10 @@ export default function DemoModal({ isOpen, onClose }) {
                     value={demoForm.phone}
                     onChange={handleInputChange}
                     onBlur={handleBlur}
-                    placeholder="+91 98765 43210"
-                    className={`w-full pl-10 pr-3 py-2.5 bg-slate-50 border ${
-                      formErrors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                    } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                    placeholder="Enter Mobile Number"
+                    maxLength={10}
+                    className={`w-full pl-10 pr-3 py-1.5 bg-slate-50 border ${formErrors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                      } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
                   />
                 </div>
                 {formErrors.phone && (
@@ -463,9 +460,8 @@ export default function DemoModal({ isOpen, onClose }) {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     placeholder="principal@school.edu"
-                    className={`w-full pl-10 pr-3 py-2.5 bg-slate-50 border ${
-                      formErrors.email ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                    } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                    className={`w-full pl-10 pr-3 py-1.5 bg-slate-50 border ${formErrors.email ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                      } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
                   />
                 </div>
                 {formErrors.email && (
@@ -485,7 +481,7 @@ export default function DemoModal({ isOpen, onClose }) {
               </div>
 
               {/* 3 Session Slot Buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
                 {SESSION_TIME_OPTIONS.map((slot) => {
                   const fullSlotName = `${slot.label} (${slot.time})`;
                   const isSelected = demoForm.sessionTime === fullSlotName;
@@ -499,18 +495,16 @@ export default function DemoModal({ isOpen, onClose }) {
                           setFormErrors((prev) => ({ ...prev, sessionTime: undefined }));
                         }
                       }}
-                      className={`p-2.5 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${
-                        isSelected
+                      className={`p-1.5 sm:p-2 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${isSelected
                           ? 'border-[#FF7A00] bg-orange-50/80 ring-2 ring-[#FF7A00]/20 shadow-xs'
                           : 'border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between w-full">
                         <span className="text-sm">{slot.icon}</span>
                         <span
-                          className={`text-[11px] font-bold ${
-                            isSelected ? 'text-[#FF7A00]' : 'text-slate-700'
-                          }`}
+                          className={`text-[11px] font-bold ${isSelected ? 'text-[#FF7A00]' : 'text-slate-700'
+                            }`}
                         >
                           {slot.label}
                         </span>
@@ -539,14 +533,14 @@ export default function DemoModal({ isOpen, onClose }) {
                 min={new Date().toISOString().split('T')[0]}
                 value={demoForm.bookingDate}
                 onChange={handleInputChange}
-                className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-700 focus:outline-none focus:border-[#FF7A00] transition-colors"
+                className="w-full px-3.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-[12px] text-slate-700 focus:outline-none focus:border-[#FF7A00] transition-colors"
               />
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 mt-1.5 bg-linear-to-r from-[#FF7A00] to-[#F6881F] hover:from-[#e56d00] hover:to-[#df7914] text-white font-bold text-[14px] sm:text-[15px] rounded-xl shadow-lg shadow-orange-500/25 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-2 bg-linear-to-r from-[#FF7A00] to-[#F6881F] hover:from-[#e56d00] hover:to-[#df7914] text-white font-bold text-[14px] sm:text-[15px] rounded-xl shadow-lg shadow-orange-500/25 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2"
             >
               <span>Confirm & Book Free Demo</span>
               <img src={arrow} alt="" className="w-4 h-4" />

@@ -107,7 +107,7 @@ export default function ComparisonSection() {
             </h2>
 
             {/* Subtitle */}
-            <div className="font-[Helvetica] font-medium text-[12px] sm:text-[16px] text-[#2B3279] sm:space-y-1 px-4 sm:px-0">
+            <div className="font-[Helvetica] font-medium text-[16px] sm:text-[16px] text-[#2B3279] sm:space-y-1 px-4 sm:px-0">
               <p className="inline sm:block whitespace-normal sm:whitespace-nowrap">Unitoppers is designed for every role, from the chairman to the parent. </p>
               <p className="inline sm:block whitespace-normal sm:whitespace-nowrap">Each stakeholder gets exactly what they need, nothing they don't.</p>
             </div>

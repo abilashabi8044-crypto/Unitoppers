@@ -80,7 +80,7 @@ export default function FeaturesSection() {
             </h2>
 
             {/* Subtitle */}
-            <p className="w-full max-w-[672px] font-normal text-[14px] sm:text-[16px] text-slate-600">
+            <p className="w-full max-w-[672px] font-normal text-[16px] sm:text-[16px] text-slate-600">
               Six fully integrated suites. One shared database. Zero duplication.
             </p>
           </div>

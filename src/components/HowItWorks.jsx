@@ -60,11 +60,11 @@ export default function HowItWorks() {
             </h2>
 
             {/* Subtitle */}
-            <div className="font-[Helvetica] font-medium text-[0.95rem] sm:text-[16px] text-[#2B3279] space-y-1">
-              <p>
-                Switching feels daunting. <span className="font-bold text-[#1f2a7c]">It isn't.</span> Our implementation team has done
+            <div className="font-[Helvetica] font-medium text-[16px] sm:text-[16px] text-[#2B3279] space-y-0 sm:space-y-1">
+              <p className="inline sm:block">
+                Switching feels daunting. <span className="font-bold text-[#1f2a7c]">It isn't.</span> Our implementation team has done{' '}
               </p>
-              <p>this for hundreds of institutions, and we handle the heavy lifting.</p>
+              <p className="inline sm:block">this for hundreds of institutions, and we handle the heavy lifting.</p>
             </div>
           </div>
         </div>

@@ -61,9 +61,9 @@ export default function Contactus() {
         if (!emailRegex.test(val)) return 'Enter a valid email address';
         break;
       case 'phone':
-        const phoneRegex = /^[+]?[\d\s-]{10,15}$/;
+        const phoneRegex = /^\d{10}$/;
         if (!val) return 'Phone number is required';
-        if (!phoneRegex.test(val)) return 'Enter a valid 10+ digit phone number';
+        if (!phoneRegex.test(val)) return 'Enter a valid 10-digit phone number';
         break;
       case 'institution':
         if (!val) return 'Institution name is required';
@@ -81,7 +81,12 @@ export default function Contactus() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    
+    if (name === 'phone') {
+      value = value.replace(/\D/g, '').slice(0, 10);
+    }
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -348,7 +353,8 @@ export default function Contactus() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         onBlur={handleBlur}
-                        placeholder="+91 98765 43210"
+                        placeholder="Enter Mobile Number"
+                        maxLength={10}
                         className={`w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border ${
                           errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
                         } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}

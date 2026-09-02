@@ -121,13 +121,13 @@ export default function Hero() {
 
         {/* Headline & Subtitle Wrapper */}
         <div className="flex flex-col gap-[16px] sm:gap-[24px] w-full items-center">
-          <h1 className="font-[Helvetica] font-semibold 2xl:-mt-1.5 text-[14px] min-[375px]:text-[16px] min-[400px]:text-[24px] sm:text-[24px] md:text-[30px] lg:text-[36px] xl:text-[2rem] 2xl:text-[2.25rem] p-[8px] leading-[118%] xl:leading-[115%] text-[#2B3279] tracking-tight max-w-[576px] sm:max-w-[672px] md:max-w-[768px] lg:max-w-[896px] xl:max-w-[896px] 2xl:max-w-[1024px]">
+          <h1 className="font-[Helvetica] font-semibold 2xl:-mt-1.5 text-[14px] min-[375px]:text-[20px] min-[400px]:text-[24px] sm:text-[24px] md:text-[30px] lg:text-[36px] xl:text-[2rem] 2xl:text-[2.25rem] p-[8px] leading-[118%] xl:leading-[115%] text-[#2B3279] tracking-tight max-w-[576px] sm:max-w-[672px] md:max-w-[768px] lg:max-w-[896px] xl:max-w-[896px] 2xl:max-w-[1024px]">
             <span>Your School Runs on 10 Different Software. </span><br className="hidden sm:block" />
             <span className="text-[#FF7A00]">It Shouldn't.</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="font-[Helvetica] text-[16px] sm:text-[14px] md:text-[14px] lg:text-[13px] lg:max-w-[672px] xl:text-[13px] xl:max-w-[672px] 2xl:text-[15px] leading-relaxed text-[#2B3279] w-full max-w-[1024px] 2xl:max-w-[768px] mx-auto">
+          <p className="font-[Helvetica] text-[16px] sm:text-[14px] md:text-[16px] lg:text-[16px] lg:max-w-[672px] xl:text-[13px] xl:max-w-[672px] 2xl:text-[15px] leading-relaxed text-[#2B3279] w-full max-w-[1024px] 2xl:max-w-[768px] mx-auto">
             Unitoppers replaces your fragmented stack of tools with one AI-powered platform, covering academics, finance, examinations, communication, HR, and more. One login. One database. Every department.
           </p>
         </div>
@@ -156,7 +156,7 @@ export default function Hero() {
         </div>
 
         {/* Trust Badge */}
-        <div className="flex flex-row pt-[0px] items-center justify-center gap-[6px] sm:gap-[8px] mt-[0px] sm:-mt-[4px] md:-mt-[8px] xl:-mt-[12px] 2xl:-mt-[4px] text-[#2B3279] text-[10px] sm:text-[12px] md:text-[14px] xl:text-[11px] 2xl:text-[12px] w-full max-w-[512px] xl:max-w-[448px] 2xl:max-w-[448px] mx-auto">
+        <div className="flex flex-row pt-[0px] items-center justify-center gap-[6px] sm:gap-[8px] mt-[0px] sm:-mt-[4px] md:-mt-[8px] xl:-mt-[12px] 2xl:-mt-[4px] text-[#2B3279] text-[12px] sm:text-[12px] md:text-[14px] xl:text-[11px] 2xl:text-[12px] w-full max-w-[512px] xl:max-w-[448px] 2xl:max-w-[448px] mx-auto">
           <img src={shield} alt="" className="-mt-[10px] w-[32px] h-[30px] sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px] lg:w-[40px] lg:h-[40px] xl:w-[28px] xl:h-[28px] 2xl:w-[32px] 2xl:h-[32px] shrink-0" />
           <span className="font-[Helvetica] text-center sm:text-left max-w-[320px] sm:max-w-[384px] md:max-w-[448px] xl:max-w-[320px] 2xl:max-w-[384px]">
             Trusted by private schools, government institutions, and coaching centers <span className="text-[#FF7A00] font-semibold">across India.</span>

@@ -95,7 +95,7 @@ export default function FragmentationProblem() {
             Your institution doesn't have a software problem.{' '}
             <span className="text-[#FF7A00]">It has a fragmentation problem.</span>
           </h2>
-          <p className="font-[Helvetica] text-[14px] sm:text-[16px] text-slate-500">
+          <p className="font-[Helvetica] text-[16px] sm:text-[16px] text-slate-500">
             Your institution probably runs all of these - separately.
           </p>
         </div>
