@@ -293,11 +293,16 @@ export default function Contactus() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[12px] font-bold text-slate-400 uppercase tracking-wider">Visit Us</span>
-                  <p className="text-[13px] font-medium text-[#2B3279] leading-relaxed">
+                  <a 
+                    href="https://maps.app.goo.gl/meTBDMVegSAcjrcN8" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-[13px] font-medium text-[#2B3279] hover:text-[#FF7A00] leading-relaxed transition-colors cursor-pointer"
+                  >
                     No 1, 1st Floor, Narasimhan St,<br />
                     Jothi Nagar, West Mambalam,<br />
                     Chennai, Tamil Nadu 600033
-                  </p>
+                  </a>
                 </div>
               </div>
 

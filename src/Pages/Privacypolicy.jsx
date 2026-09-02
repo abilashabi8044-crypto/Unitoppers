@@ -354,12 +354,19 @@ export default function Privacypolicy() {
           <div className="p-6 bg-slate-50/90 border border-slate-200 rounded-2xl flex flex-col md:flex-row gap-6 justify-between items-start">
             <div className="flex items-start gap-3.5">
               <MapPin className="w-5 h-5 text-[#FF7A00] shrink-0 mt-0.5" />
-              <div className="text-[14px] text-slate-700 leading-relaxed">
+              <div className="text-[14px] text-slate-700 leading-relaxed flex flex-col items-start">
                 <strong className="text-[#2B3279] text-[16px] block mb-1">Unitoppers</strong>
-                No 1, 1st Floor, Narasimhan St,<br />
-                Jothi Nagar, West Mambalam,<br />
-                Chennai, Tamil Nadu 600033<br />
-                India
+                <a 
+                  href="https://maps.app.goo.gl/meTBDMVegSAcjrcN8" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-[#FF7A00] transition-colors cursor-pointer"
+                >
+                  No 1, 1st Floor, Narasimhan St,<br />
+                  Jothi Nagar, West Mambalam,<br />
+                  Chennai, Tamil Nadu 600033<br />
+                  India
+                </a>
               </div>
             </div>
 
