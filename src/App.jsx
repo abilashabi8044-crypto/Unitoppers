@@ -14,6 +14,7 @@ import HowItWorks from './components/HowItWorks';
 import DemoSection from './components/DemoSection';
 import Footer from './components/Footer';
 import SmoothScroll from './components/SmoothScroll';
+import ScrollToTopButton from './components/ScrollToTopButton';
 import Contactus from './Pages/Contactus';
 import Privacypolicy from './Pages/Privacypolicy';
 import TermsAndConditions from './Pages/Terms&conditions';
@@ -60,6 +61,7 @@ export default function App() {
       <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
         <SmoothScroll />
         <Contactus />
+        <ScrollToTopButton />
       </div>
     );
   }
@@ -70,6 +72,7 @@ export default function App() {
       <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
         <SmoothScroll />
         <Privacypolicy />
+        <ScrollToTopButton />
       </div>
     );
   }
@@ -80,6 +83,7 @@ export default function App() {
       <div className="min-h-screen w-full bg-[#F8F8FF] text-slate-800 selection:bg-orange-100 selection:text-orange-600 relative overflow-x-hidden">
         <SmoothScroll />
         <TermsAndConditions />
+        <ScrollToTopButton />
       </div>
     );
   }
@@ -143,6 +147,8 @@ export default function App() {
 
       {/* SECTION 11: Footer */}
       <Footer />
+      
+      <ScrollToTopButton />
     </div>
   );
 }

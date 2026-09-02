@@ -66,11 +66,11 @@ export default function AnalyticsShowcase() {
 
             {/* Item 1 */}
             <div className="flex items-center gap-[14px] sm:gap-[16px]">
-              <div className="w-[48px] h-[48px] sm:w-[56px] sm:h-[56px] lg:w-[72px] lg:h-[72px] rounded-[9999px] bg-orange-50/80 border border-orange-100 flex items-center justify-center shrink-0 shadow-2xs">
+              <div className="w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] lg:w-[56px] lg:h-[56px] rounded-[9999px] bg-orange-50/80 border border-orange-100 flex items-center justify-center shrink-0 shadow-2xs">
                 <img
                   src={pieIcon}
                   alt="Standardized reporting"
-                  className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px] object-contain pointer-events-none select-none"
+                  className="w-[20px] h-[20px] sm:w-[28px] sm:h-[28px] object-contain pointer-events-none select-none"
                 />
               </div>
               <div className="flex-1 min-w-0 flex items-center">
@@ -82,7 +82,7 @@ export default function AnalyticsShowcase() {
 
             {/* Item 2 */}
             <div className="flex items-center gap-[14px] sm:gap-[16px]">
-              <div className="w-[48px] h-[48px] sm:w-[56px] sm:h-[56px] lg:w-[72px] lg:h-[72px] rounded-[9999px] bg-orange-50/80 border border-orange-100 flex items-center justify-center shrink-0 shadow-2xs">
+              <div className="w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] lg:w-[56px] lg:h-[56px] rounded-[9999px] bg-orange-50/80 border border-orange-100 flex items-center justify-center shrink-0 shadow-2xs">
                 <img
                   src={analyticsIcon}
                   alt="Real-time visibility"
@@ -98,7 +98,7 @@ export default function AnalyticsShowcase() {
 
             {/* Item 3 */}
             <div className="flex items-center gap-[14px] sm:gap-[16px]">
-              <div className="w-[48px] h-[48px] sm:w-[56px] sm:h-[56px] lg:w-[72px] lg:h-[72px] rounded-[9999px] bg-orange-50/80 border border-orange-100 flex items-center justify-center shrink-0 shadow-2xs">
+              <div className="w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] lg:w-[56px] lg:h-[56px] rounded-[9999px] bg-orange-50/80 border border-orange-100 flex items-center justify-center shrink-0 shadow-2xs">
                 <img
                   src={shieldIcon}
                   alt="AI-powered governance"

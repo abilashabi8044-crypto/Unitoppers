@@ -44,6 +44,7 @@ export default function DemoModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const [cities, setCities] = useState(POPULAR_CITIES);
   const [citySuggestions, setCitySuggestions] = useState([]);
+  const [countryCodes, setCountryCodes] = useState([]);
   const [showCitySuggestions, setShowCitySuggestions] = useState(false);
   const [instSuggestions, setInstSuggestions] = useState([]);
   const [showInstSuggestions, setShowInstSuggestions] = useState(false);
@@ -66,11 +67,25 @@ export default function DemoModal({ isOpen, onClose }) {
       }
     };
     fetchCities();
+
+    const fetchCountryCodes = async () => {
+      try {
+        const response = await fetch('https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/CountryCodes.json');
+        if (response.ok) {
+          const data = await response.json();
+          setCountryCodes(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch country codes:', error);
+      }
+    };
+    fetchCountryCodes();
   }, []);
   const [demoForm, setDemoForm] = useState({
     name: '',
     institution: '',
     city: '',
+    countryCode: '+91',
     phone: '',
     email: '',
     sessionTime: 'Morning Slot (10:00 AM - 01:00 PM)',
@@ -131,9 +146,9 @@ export default function DemoModal({ isOpen, onClose }) {
         if (val.length < 2) return 'City must be at least 2 characters';
         break;
       case 'phone':
-        const phoneRegex = /^\d{10}$/;
+        const phoneRegex = /^\d{7,15}$/;
         if (!val) return 'Phone number is required';
-        if (!phoneRegex.test(val)) return 'Enter a valid 10-digit phone number';
+        if (!phoneRegex.test(val)) return 'Enter a valid phone number (7-15 digits)';
         break;
       case 'email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -153,7 +168,7 @@ export default function DemoModal({ isOpen, onClose }) {
     let { name, value } = e.target;
 
     if (name === 'phone') {
-      value = value.replace(/\D/g, '').slice(0, 10);
+      value = value.replace(/\D/g, '').slice(0, 15);
     }
 
     if (formErrors[name]) {
@@ -164,13 +179,13 @@ export default function DemoModal({ isOpen, onClose }) {
     if (name === 'city') {
       if (value.trim().length > 0) {
         const filtered = cities.filter((city) =>
-          city.toLowerCase().startsWith(value.toLowerCase())
+          city.toLowerCase().includes(value.toLowerCase())
         );
         setCitySuggestions(filtered);
         setShowCitySuggestions(true);
       } else {
-        setCitySuggestions([]);
-        setShowCitySuggestions(false);
+        setCitySuggestions(cities);
+        setShowCitySuggestions(true);
       }
     }
 
@@ -357,16 +372,23 @@ export default function DemoModal({ isOpen, onClose }) {
                 )}
               </div>
 
-              {/* Field 3: City */}
-              <div className="flex flex-col gap-1 relative">
-                <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
-                  City <span className="text-red-500">*</span>
+              {/* City / State */}
+              <div 
+                className="flex flex-col gap-1.5 relative"
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                    setShowCitySuggestions(false);
+                  }
+                }}
+              >
+                <label className="text-[13px] sm:text-[14px] font-bold text-[#2B3279] ml-1">
+                  City / State <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <img
                     src={locationIcon}
-                    alt="City"
-                    className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
+                    alt="Location"
+                    className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none opacity-80"
                   />
                   <input
                     type="text"
@@ -376,13 +398,15 @@ export default function DemoModal({ isOpen, onClose }) {
                     onFocus={() => {
                       if (demoForm.city.trim().length > 0) {
                         const filtered = cities.filter((city) =>
-                          city.toLowerCase().startsWith(demoForm.city.toLowerCase())
+                          city.toLowerCase().includes(demoForm.city.toLowerCase())
                         );
                         setCitySuggestions(filtered);
                         setShowCitySuggestions(true);
+                      } else {
+                        setCitySuggestions(cities);
+                        setShowCitySuggestions(true);
                       }
                     }}
-                    onBlur={() => setShowCitySuggestions(false)}
                     placeholder="e.g. Chennai, Mumbai, Bangalore"
                     className={`w-full pl-10 pr-4 py-1.5 bg-slate-50 border ${formErrors.city ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
                       } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
@@ -390,8 +414,11 @@ export default function DemoModal({ isOpen, onClose }) {
                   />
                 </div>
                 {showCitySuggestions && citySuggestions.length > 0 && (
-                  <div className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-none py-1.5 flex flex-col">
-                    {citySuggestions.slice(0, 10).map((city) => (
+                  <div 
+                    className="absolute left-[0px] right-[0px] top-[calc(100%+4px)] z-50 max-h-[180px] overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-lg scrollbar-thin scrollbar-thumb-slate-300 py-1.5 flex flex-col"
+                    tabIndex={-1}
+                  >
+                    {citySuggestions.slice(0, 50).map((city) => (
                       <button
                         key={city}
                         type="button"
@@ -419,23 +446,41 @@ export default function DemoModal({ isOpen, onClose }) {
                 <label className="text-[12px] sm:text-[13px] font-bold text-[#2B3279]">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
-                <div className="relative">
-                  <img
-                    src={phoneIcon}
-                    alt="Phone"
-                    className="w-4 h-4 object-contain absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
-                  />
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={demoForm.phone}
+                <div className="relative flex">
+                  <select
+                    name="countryCode"
+                    value={demoForm.countryCode}
                     onChange={handleInputChange}
-                    onBlur={handleBlur}
-                    placeholder="Enter Mobile Number"
-                    maxLength={10}
-                    className={`w-full pl-10 pr-3 py-1.5 bg-slate-50 border ${formErrors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
-                      } rounded-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
-                  />
+                    className="w-[90px] pl-2 pr-1 py-1.5 bg-slate-50 border border-slate-200 border-r-0 rounded-l-xl text-[13px] sm:text-[14px] text-slate-800 focus:outline-none focus:border-[#FF7A00] transition-colors"
+                  >
+                    {countryCodes.length > 0 ? (
+                      countryCodes.map((cc, idx) => (
+                        <option key={idx} value={cc.dial_code}>
+                          {cc.code} ({cc.dial_code})
+                        </option>
+                      ))
+                    ) : (
+                      <option value="+91">IN (+91)</option>
+                    )}
+                  </select>
+                  <div className="relative flex-1">
+                    {/* <img
+                      src={phoneIcon}
+                      alt="Phone"
+                      className="w-4 h-4 object-contain absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-80"
+                    /> */}
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={demoForm.phone}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
+                      placeholder="Enter Mobile Number"
+                      maxLength={15}
+                      className={`w-full pl-3 pr-3 py-1.5 bg-slate-50 border ${formErrors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
+                        } rounded-r-xl border-l-0 text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
+                    />
+                  </div>
                 </div>
                 {formErrors.phone && (
                   <span className="text-red-500 text-[11px] font-medium ml-1">{formErrors.phone}</span>
@@ -496,8 +541,8 @@ export default function DemoModal({ isOpen, onClose }) {
                         }
                       }}
                       className={`p-1.5 sm:p-2 rounded-xl border text-left flex flex-col justify-between transition-all cursor-pointer ${isSelected
-                          ? 'border-[#FF7A00] bg-orange-50/80 ring-2 ring-[#FF7A00]/20 shadow-xs'
-                          : 'border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300'
+                        ? 'border-[#FF7A00] bg-orange-50/80 ring-2 ring-[#FF7A00]/20 shadow-xs'
+                        : 'border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300'
                         }`}
                     >
                       <div className="flex items-center justify-between w-full">
@@ -581,7 +626,7 @@ export default function DemoModal({ isOpen, onClose }) {
               )}
               <div className="flex items-center justify-between text-xs text-slate-600">
                 <span className="font-medium">Contact:</span>
-                <span className="font-semibold text-slate-800">{demoForm.phone} / {demoForm.email}</span>
+                <span className="font-semibold text-slate-800">{demoForm.countryCode} {demoForm.phone} / {demoForm.email}</span>
               </div>
             </div>
 
