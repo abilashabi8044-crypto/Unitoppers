@@ -177,9 +177,49 @@ export default function DemoSection() {
 
   return (
     <section id="demo-form" className="relative w-full mt-[0px] pt-[24px] pb-[24px] sm:pt-[48px] sm:pb-[48px] px-[16px] sm:px-[48px] bg-white overflow-hidden font-['Helvetica',sans-serif]">
+      <style>
+        {`
+          @media screen and (min-width: 1024px) and (max-width: 1280px) {
+            #demo-form .demo-form-card {
+              padding: 16px 20px !important;
+            }
+            #demo-form form {
+              gap: 10px !important;
+            }
+            #demo-form .demo-form-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+              gap: 10px !important;
+            }
+            #demo-form input, #demo-form select {
+              padding-top: 7px !important;
+              padding-bottom: 7px !important;
+            }
+            #demo-form button[type="submit"] {
+              padding-top: 9px !important;
+              padding-bottom: 9px !important;
+              margin-top: 0px !important;
+            }
+            #demo-form .demo-divider {
+              margin-top: 6px !important;
+              margin-bottom: 6px !important;
+            }
+            #demo-form .demo-booklet-box {
+              gap: 6px !important;
+            }
+            #demo-form .demo-booklet-text {
+              font-size: 13px !important;
+              line-height: 1.3 !important;
+            }
+            #demo-form .demo-booklet-icon {
+              width: 28px !important;
+              height: 28px !important;
+            }
+          }
+        `}
+      </style>
 
       {/* Main Container */}
-      <div className="relative z-10 max-w-8xl mx-auto flex flex-col lg:flex-row items-stretch lg:items-stretch justify-between gap-[24px] lg:gap-[32px]">
+      <div className="relative z-10 max-w-8xl mx-auto flex flex-col lg:flex-row items-center lg:items-center justify-between gap-[24px] lg:gap-[32px]">
 
         {/* LEFT COLUMN: Title, Description & stats.png Image Showcase */}
         <div className="flex flex-col items-start gap-[16px] w-full lg:w-[52%] text-left shrink-0">
@@ -206,15 +246,15 @@ export default function DemoSection() {
         </div>
 
         {/* RIGHT COLUMN: Lead Form Card */}
-        <div className="w-full lg:w-[48%] flex justify-center lg:self-stretch">
+        <div className="w-full lg:w-[48%] flex justify-center lg:self-center">
 
-          <div className="w-full max-w-[672px] mt-[20px] lg:mt-0 h-auto lg:h-full bg-white rounded-[24px] p-[24px] sm:p-[32px] lg:p-[28px] xl:p-[32px] border border-slate-300 shadow-xl text-left flex flex-col justify-start lg:justify-center">
+          <div className="demo-form-card w-full max-w-[672px] mt-[20px] lg:mt-0 h-auto bg-white rounded-[24px] p-[24px] sm:p-[28px] xl:p-[28px] border border-slate-300 shadow-xl text-left flex flex-col justify-start">
 
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[14px]">
 
               {/* ROW 1: Name & Institution */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
+              <div className="demo-form-grid grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
                 {/* Field 1: Your Name */}
                 <div className="flex flex-col gap-[6px]">
                   <label className="font-[Helvetica] text-[13px] sm:text-[14px] font-bold text-[#2B3279]">Your Name</label>
@@ -261,7 +301,7 @@ export default function DemoSection() {
               </div>
 
               {/* ROW 2: City & Phone */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
+              <div className="demo-form-grid grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 gap-[14px] sm:gap-[16px] lg:gap-[14px] xl:gap-[16px]">
                 {/* Field 3: City */}
                 <div
                   className="flex flex-col gap-[6px] relative"
@@ -392,7 +432,7 @@ export default function DemoSection() {
               </button>
 
               {/* Divider Line with OR badge */}
-              <div className="relative my-[12px] sm:my-[16px] lg:my-[10px] xl:my-[12px] flex items-center justify-center">
+              <div className="demo-divider relative my-[12px] sm:my-[16px] lg:my-[10px] xl:my-[12px] flex items-center justify-center">
                 <div className="absolute inset-[0px] flex items-center">
                   <div className="w-full border-t border-slate-300" />
                 </div>
@@ -402,14 +442,14 @@ export default function DemoSection() {
               </div>
 
               {/* Booklet Download & Guarantee Notes */}
-              <div className="flex flex-col gap-[10px] sm:gap-[12px] lg:gap-[8px] xl:gap-[10px] text-[12px]">
+              <div className="demo-booklet-box flex flex-col gap-[10px] sm:gap-[12px] lg:gap-[8px] xl:gap-[10px] text-[12px]">
 
                 {/* Download item */}
                 <div className="flex items-center gap-[10px]">
-                  <div className="w-[30px] h-[30px] sm:w-[32px] sm:h-[32px] rounded-[9999px] bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                  <div className="demo-booklet-icon w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[9999px] bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                     <img src={downloadIcon} alt="Download" className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] object-contain pointer-events-none select-none" />
                   </div>
-                  <div className="font-[Helvetica] text-[#2B3279]">
+                  <div className="demo-booklet-text font-[Helvetica] text-[16px] text-[#2B3279]">
                     <span>Not ready for a demo? </span>
                     <a
                       href={productBooklet}
@@ -423,10 +463,10 @@ export default function DemoSection() {
 
                 {/* Guarantee item */}
                 <div className="flex items-center gap-[10px]">
-                  <div className="w-[30px] h-[30px] sm:w-[32px] sm:h-[32px] rounded-[9999px] bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                  <div className="demo-booklet-icon w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[9999px] bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                     <img src={shieldIcon} alt="Guarantee" className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] object-contain pointer-events-none select-none" />
                   </div>
-                  <p className="text-[#2B3279] font-[Helvetica] leading-relaxed text-[11px] sm:text-[12px]">
+                  <p className="demo-booklet-text text-[#2B3279] font-[Helvetica] leading-relaxed text-[16px] sm:text-[16px]">
                     No commitment. No sales pressure. Just a walkthrough built around your institution's needs.
                   </p>
                 </div>

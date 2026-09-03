@@ -117,9 +117,9 @@ export default function Contactus() {
         if (!emailRegex.test(val)) return 'Enter a valid email address';
         break;
       case 'phone':
-        const phoneRegex = /^\d{7,15}$/;
+        const phoneRegex = /^\d{10}$/;
         if (!val) return 'Phone number is required';
-        if (!phoneRegex.test(val)) return 'Enter a valid phone number (7-15 digits)';
+        if (!phoneRegex.test(val)) return 'Enter a valid 10-digit phone number';
         break;
       case 'institution':
         if (!val) return 'Institution name is required';
@@ -137,7 +137,7 @@ export default function Contactus() {
     let { name, value } = e.target;
     
     if (name === 'phone') {
-      value = value.replace(/\D/g, '').slice(0, 15);
+      value = value.replace(/\D/g, '').slice(0, 10);
     }
 
     if (name === 'city') {
@@ -445,7 +445,7 @@ export default function Contactus() {
                           onChange={handleInputChange}
                           onBlur={handleBlur}
                           placeholder="Mobile Number"
-                          maxLength={15}
+                          maxLength={10}
                           className={`w-full pl-3.5 pr-3.5 py-2.5 bg-slate-50 border ${
                             errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'
                           } rounded-r-xl border-l-0 text-[13px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors`}
