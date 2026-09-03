@@ -113,7 +113,7 @@ export default function AcademicShowcase() {
         {/* RIGHT COLUMN: Overlapping AI Proctoring & Analytics UI Mockup Images */}
         <div className="w-full max-w-[672px] lg:max-w-none lg:w-[54%] xl:w-[58%] relative flex flex-col items-center justify-center min-h-88 lg:min-h-96 xl:min-h-112 mt-[24px] lg:mt-[0px] px-[8px] sm:px-[16px] lg:px-[0px]">
 
-          <div className="relative z-20 w-full max-w-[576px] lg:max-w-[448px] xl:max-w-[672px] transform lg:translate-x-3 xl:translate-x-12 lg:-translate-y-4 xl:-translate-y-9 hover:scale-[1.01] transition-transform">
+          <div className="relative z-20 w-full max-w-[576px] lg:max-w-[448px] xl:max-w-[672px] transform lg:translate-x-3 xl:translate-x-10 lg:-translate-y-4 xl:-translate-y-9 hover:scale-[1.01] transition-transform">
             <img
               src={aiImg1}
               alt="AI Proctoring Live Monitoring"

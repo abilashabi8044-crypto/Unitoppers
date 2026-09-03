@@ -274,6 +274,30 @@ export default function DemoModal({ isOpen, onClose }) {
       aria-modal="true"
       aria-label="Book a Free Demo Form"
     >
+      <style>
+        {`
+          @keyframes modal-backdrop-enter {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+          @keyframes modal-backdrop-exit {
+            from { opacity: 1; }
+            to { opacity: 0; }
+          }
+          @keyframes modal-card-enter {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+          }
+          @keyframes modal-card-exit {
+            from { opacity: 1; transform: scale(1) translateY(0); }
+            to { opacity: 0; transform: scale(0.95) translateY(10px); }
+          }
+          .modal-backdrop-enter { animation: modal-backdrop-enter 0.25s ease-out forwards; }
+          .modal-backdrop-exit { animation: modal-backdrop-exit 0.25s ease-in forwards; }
+          .modal-card-enter { animation: modal-card-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+          .modal-card-exit { animation: modal-card-exit 0.25s cubic-bezier(0.5, 0, 0.8, 0.5) forwards; }
+        `}
+      </style>
       <div
         data-lenis-prevent
         className={`relative w-full max-w-[540px] bg-white rounded-[24px] sm:rounded-[32px] shadow-2xl border border-slate-200/90 p-3 sm:p-5 max-h-[92vh] overflow-y-auto scrollbar-none flex flex-col text-left font-[Helvetica] ${isClosing ? 'modal-card-exit' : 'modal-card-enter'
