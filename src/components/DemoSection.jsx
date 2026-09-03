@@ -101,9 +101,9 @@ export default function DemoSection() {
         if (val.length < 2) return 'City must be at least 2 characters';
         break;
       case 'phone':
-        const phoneRegex = /^\d{7,15}$/;
+        const phoneRegex = /^\d{10}$/;
         if (!val) return 'Phone number is required';
-        if (!phoneRegex.test(val)) return 'Enter a valid phone number (7-15 digits)';
+        if (!phoneRegex.test(val)) return 'Enter a valid 10-digit phone number';
         break;
       case 'email':
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -153,7 +153,7 @@ export default function DemoSection() {
     let { name, value } = e.target;
 
     if (name === 'phone') {
-      value = value.replace(/\D/g, '').slice(0, 15);
+      value = value.replace(/\D/g, '').slice(0, 10);
     }
 
     if (name === 'city') {
@@ -392,7 +392,7 @@ export default function DemoSection() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder="Mobile Number"
-                        maxLength={15}
+                        maxLength={10}
                         className={`w-full pl-[16px] pr-[16px] py-[10px] sm:py-[11px] lg:py-[10px] bg-slate-50 border ${errors.phone ? 'border-red-500 bg-red-50/50' : 'border-slate-200 focus:border-[#FF7A00] focus:bg-white'} rounded-r-[12px] border-l-0 text-[12px] sm:text-[14px] text-slate-800 focus:outline-none transition-colors shadow-2xs`}
                       />
                     </div>
