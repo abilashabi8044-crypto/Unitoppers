@@ -36,7 +36,7 @@ export default function AnalyticsShowcase() {
         <div className="flex flex-col items-start gap-[16px] sm:gap-[24px] w-full lg:w-[48%] text-left shrink-0">
 
           {/* Tag Pill Badge */}
-          <div className="inline-flex items-center gap-[8px] px-[14px] py-[6px] sm:px-[16px] sm:py-[8px] rounded-[9999px] backdrop-blur-xs border border-[#FF7A00]/50 shadow-2xs">
+          <div className="inline-flex items-center gap-[8px] px-[14px] py-[6px] sm:px-[16px] sm:py-[8px] rounded-[9999px] bg-white backdrop-blur-xs border border-[#FF7A00]/50 shadow-2xs">
             <img src={govIcon} alt="Gov" className="w-[20px] h-[28px] object-contain pointer-events-none select-none" />
             <span className="font-[Helvetica] font-semibold text-[12px] sm:text-[14px] text-[#FF7A00]">
               For Government Institutions

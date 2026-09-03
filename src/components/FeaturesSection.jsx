@@ -65,7 +65,7 @@ export default function FeaturesSection() {
         {/* Header Section */}
         <div className="flex flex-col items-center text-center gap-[24px] max-w-[768px] px-[4px]">
           {/* Pill Badge */}
-          <div className="inline-flex items-center gap-[8px] px-[16px] py-[6px] rounded-[9999px]  border border-[#FF7A00]/50 shadow-2xs">
+          <div className="inline-flex items-center gap-[8px] px-[16px] py-[6px] rounded-[9999px] bg-white border border-[#FF7A00]/50 shadow-2xs">
             <img src={mainLogo} alt="The platform" className="w-[40px] h-[24px] object-contain pointer-events-none select-none" />
             <span className="font-[Helvetica] font-semibold text-[12px] sm:text-[14px] text-[#FF7A00]">
               The platform
